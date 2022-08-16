@@ -9,7 +9,7 @@ import UIKit
 
 class BookListCollectionViewCell: UICollectionViewCell {
     private let bookCoverImageView = UIImageView().then {
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
         $0.addBorder(color: .lightGray, width: 0.5)
         $0.addShadow()
     }

@@ -115,7 +115,12 @@ extension BookListViewController: UICollectionViewDataSource {
 
 // MARK: UICollectionViewDelegate
 extension BookListViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let bookDetailViewController = BookDetailViewController()
+        //FIXME: indexPath.item
+        bookDetailViewController.setupUI()
+        navigationController?.pushViewController(bookDetailViewController, animated: false)
+    }
 }
 
 // MARK: UICollectionViewDelegateFlowLayout
