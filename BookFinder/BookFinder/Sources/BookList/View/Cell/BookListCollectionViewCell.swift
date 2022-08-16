@@ -81,10 +81,10 @@ class BookListCollectionViewCell: UICollectionViewCell {
     }
 
     //FIXME: 실제 data param
-    func setupUI() {
+    func setupUI(data: BookItem) {
         bookCoverImageView.image = UIImage(named: "testImage")
-        titleLabel.text = "나는 제목입니다."
-        authorLabel.text = "전소영"
-        publishedDateLabel.text = "2022-08-16"
+        titleLabel.text = data.volumeInfo.title
+        authorLabel.text = data.volumeInfo.authors?.first
+        publishedDateLabel.text = data.volumeInfo.publishedDate
     }
 }

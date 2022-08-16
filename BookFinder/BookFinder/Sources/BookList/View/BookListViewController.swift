@@ -13,13 +13,14 @@ import RxCocoa
 
 class BookListViewController: UIViewController {
     private let disposeBag = DisposeBag()
-    
+    private let viewModel = BookListViewModel()
+    var bookListDatas: [BookItem] = []
+
     private let searchController = UISearchController().then {
         $0.searchBar.placeholder = "책 또는 저자를 검색해주세요"
     }
     
-    private let searchResultCount = UILabel().then {
-        $0.text = "검색 결과: 2개"
+    private let searchResultCountLabel = UILabel().then {
         $0.font = UIFont.setFont(type: .regular, size: 14)
     }
     
@@ -43,6 +44,7 @@ class BookListViewController: UIViewController {
         setupSearchController()
         setupCollectionView()
         bindAction()
+        bindViewModel()
     }
     
     private func setupView() {
@@ -53,17 +55,17 @@ class BookListViewController: UIViewController {
     }
     
     private func setupSubViews() {
-        view.addSubviews([searchResultCount, lineView, bookListCollectionView])
+        view.addSubviews([searchResultCountLabel, lineView, bookListCollectionView])
     }
 
     private func setupConstraints() {
-        searchResultCount.snp.makeConstraints {
+        searchResultCountLabel.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(12)
             $0.leading.equalToSuperview().inset(24)
         }
         
         lineView.snp.makeConstraints {
-            $0.top.equalTo(searchResultCount.snp.bottom).offset(6)
+            $0.top.equalTo(searchResultCountLabel.snp.bottom).offset(6)
             $0.centerX.width.equalToSuperview()
             $0.height.equalTo(0.2)
         }
@@ -92,22 +94,49 @@ class BookListViewController: UIViewController {
             .bind { [weak self] _ in
                 if let searchText = self?.searchController.searchBar.searchTextField.text {
                     print("searchText: \(searchText)")
+                    self?.viewModel.action.didSearch.onNext((searchText))
                 }
             }
             .disposed(by: self.disposeBag)
+        
+        bookListCollectionView.rx.prefetchItems
+            .compactMap(\.last?.item)
+            .withUnretained(self)
+            .bind { [weak self] vc, item in
+                if self?.viewModel.isRequestCompleted == false {
+                    if let searchText = self?.searchController.searchBar.searchTextField.text,
+                       let dataCount = self?.bookListDatas.count,
+//                       let dataCount = self?.dataSource.sectionModels.first?.items.count,
+                       item >= dataCount - 3,
+                       self?.viewModel.isRequesting == false {
+                        self?.viewModel.action.didSearch.onNext((searchText))
+                    }
+                }
+            }
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func bindViewModel() {
+        self.viewModel.state.bookListData
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] (bookList: BookList) in
+                self?.bookListDatas = bookList.items
+                self?.searchResultCountLabel.text = "검색 결과: \(bookList.totalItems)개"
+                self?.bookListCollectionView.reloadData()
+            }).disposed(by: disposeBag)
     }
 }
 
 // MARK: UICollectionViewDataSource
 extension BookListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return bookListDatas.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookListCollectionViewCell", for: indexPath)
         let bookListCollectionViewCell = cell as? BookListCollectionViewCell
-        bookListCollectionViewCell?.setupUI()
+        bookListCollectionViewCell?.setupUI(data: bookListDatas[indexPath.item])
         
         return cell
     }
@@ -117,8 +146,7 @@ extension BookListViewController: UICollectionViewDataSource {
 extension BookListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let bookDetailViewController = BookDetailViewController()
-        //FIXME: indexPath.item
-        bookDetailViewController.setupUI()
+        bookDetailViewController.setupUI(data: bookListDatas[indexPath.item])
         navigationController?.pushViewController(bookDetailViewController, animated: false)
     }
 }
