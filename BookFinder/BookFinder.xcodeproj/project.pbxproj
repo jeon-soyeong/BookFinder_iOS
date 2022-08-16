@@ -17,6 +17,10 @@
 		9BD8360228AB2F4600183B9D /* BookFinderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8360128AB2F4600183B9D /* BookFinderUITestsLaunchTests.swift */; };
 		9BD8361A28AB312F00183B9D /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8361928AB312F00183B9D /* BookListViewController.swift */; };
 		9BD8361C28AB327900183B9D /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8361B28AB327900183B9D /* BookDetailViewController.swift */; };
+		9BD8361F28AB698C00183B9D /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8361E28AB698C00183B9D /* UIFont+Extension.swift */; };
+		9BD8362128AB69A100183B9D /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8362028AB69A100183B9D /* UIView+Extension.swift */; };
+		9BD8362328AB70DA00183B9D /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8362228AB70DA00183B9D /* UICollectionView+Extension.swift */; };
+		9BD8362628AB713900183B9D /* BookListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8362528AB713900183B9D /* BookListCollectionViewCell.swift */; };
 		C2B5C2D53ED3BDE27752267F /* Pods_BookFinderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EF76AC447ED7C7CD3881D19 /* Pods_BookFinderTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +59,10 @@
 		9BD8360128AB2F4600183B9D /* BookFinderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFinderUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9BD8361928AB312F00183B9D /* BookListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListViewController.swift; sourceTree = "<group>"; };
 		9BD8361B28AB327900183B9D /* BookDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
+		9BD8361E28AB698C00183B9D /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		9BD8362028AB69A100183B9D /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		9BD8362228AB70DA00183B9D /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
+		9BD8362528AB713900183B9D /* BookListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListCollectionViewCell.swift; sourceTree = "<group>"; };
 		9EF76AC447ED7C7CD3881D19 /* Pods_BookFinderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookFinderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2C023C587FB83CF6C36E58B /* Pods-BookFinder-BookFinderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookFinder-BookFinderUITests.debug.xcconfig"; path = "Target Support Files/Pods-BookFinder-BookFinderUITests/Pods-BookFinder-BookFinderUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E22F9C0DFF1A68077692F287 /* Pods-BookFinderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookFinderTests.debug.xcconfig"; path = "Target Support Files/Pods-BookFinderTests/Pods-BookFinderTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -99,7 +107,6 @@
 				E22F9C0DFF1A68077692F287 /* Pods-BookFinderTests.debug.xcconfig */,
 				07E65237A170DE04FDCBDF90 /* Pods-BookFinderTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -193,6 +200,7 @@
 		9BD8361228AB302C00183B9D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				9BD8361D28AB696500183B9D /* Extension */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -217,6 +225,7 @@
 		9BD8361528AB30DE00183B9D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9BD8362428AB712000183B9D /* Cell */,
 				9BD8361928AB312F00183B9D /* BookListViewController.swift */,
 			);
 			path = View;
@@ -243,6 +252,24 @@
 				9BD8361B28AB327900183B9D /* BookDetailViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		9BD8361D28AB696500183B9D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				9BD8361E28AB698C00183B9D /* UIFont+Extension.swift */,
+				9BD8362028AB69A100183B9D /* UIView+Extension.swift */,
+				9BD8362228AB70DA00183B9D /* UICollectionView+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		9BD8362428AB712000183B9D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9BD8362528AB713900183B9D /* BookListCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -482,9 +509,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BD8362128AB69A100183B9D /* UIView+Extension.swift in Sources */,
+				9BD8362328AB70DA00183B9D /* UICollectionView+Extension.swift in Sources */,
+				9BD8362628AB713900183B9D /* BookListCollectionViewCell.swift in Sources */,
 				9BD835DF28AB2F4000183B9D /* AppDelegate.swift in Sources */,
 				9BD835E128AB2F4000183B9D /* SceneDelegate.swift in Sources */,
 				9BD8361C28AB327900183B9D /* BookDetailViewController.swift in Sources */,
+				9BD8361F28AB698C00183B9D /* UIFont+Extension.swift in Sources */,
 				9BD8361A28AB312F00183B9D /* BookListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
