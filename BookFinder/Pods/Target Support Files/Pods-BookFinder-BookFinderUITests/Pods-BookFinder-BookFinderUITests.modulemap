@@ -1,0 +1,6 @@
+framework module Pods_BookFinder_BookFinderUITests {
+  umbrella header "Pods-BookFinder-BookFinderUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
