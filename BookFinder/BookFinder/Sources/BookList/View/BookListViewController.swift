@@ -16,6 +16,7 @@ class BookListViewController: UIViewController {
     private let viewModel = BookListViewModel()
     private var bookItems: [BookItem] = []
     private var searchResultCount = 0
+    private var isRequesting = false
     
     private let searchController = UISearchController().then {
         $0.searchBar.placeholder = "책 또는 저자를 검색해주세요"
@@ -109,7 +110,7 @@ class BookListViewController: UIViewController {
                     if let searchText = self?.searchController.searchBar.searchTextField.text,
                        let dataCount = self?.bookItems.count,
                        item >= dataCount - 3,
-                       self?.viewModel.isRequesting == false {
+                       self?.isRequesting == false {
                         self?.viewModel.action.didSearch.onNext((searchText))
                     }
                 }
@@ -118,7 +119,7 @@ class BookListViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        self.viewModel.state.bookListData
+        viewModel.state.bookListData
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] result in
                 switch result {
@@ -134,7 +135,19 @@ class BookListViewController: UIViewController {
                     self?.searchResultCountLabel.text = nil
                     self?.searchResultCountLabel.isHidden = true
                 }
-            }).disposed(by: disposeBag)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.state.isRequesting
+            .subscribe(onNext: { [weak self] isRequesting in
+                self?.isRequesting = isRequesting
+                if isRequesting {
+                    LoadingActivityIndicatorManager.showLoadingActivityIndicator()
+                } else {
+                    LoadingActivityIndicatorManager.hideLoadingActivityIndicator()
+                }
+            })
+            .disposed(by: disposeBag)
     }
 
     private func initialize() {

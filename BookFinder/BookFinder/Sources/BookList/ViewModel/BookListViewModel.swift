@@ -8,6 +8,7 @@
 import Foundation
 
 import RxSwift
+import RxRelay
 
 class BookListViewModel: ViewModelType {
     var disposeBag = DisposeBag()
@@ -17,7 +18,6 @@ class BookListViewModel: ViewModelType {
     private(set) var perPage = 20
     private(set) var currentItemCount = 0
     private(set) var isRequestCompleted = false
-    private(set) var isRequesting = false
     private(set) var totalItemsCount = 0
 
     struct Action {
@@ -26,6 +26,7 @@ class BookListViewModel: ViewModelType {
 
     struct State {
         let bookListData = PublishSubject<Result<BookList, Error>>()
+        let isRequesting = BehaviorRelay<Bool>(value: false)
     }
 
     var action = Action()
@@ -51,7 +52,7 @@ class BookListViewModel: ViewModelType {
     }
 
     private func requestBookListData(query: String) {
-        self.isRequesting = true
+        self.state.isRequesting.accept(true)
         startIndex = (currentPage - 1) * perPage
         if let request = URLRequest(type: BookFinderAPI.getBookItem(q: query, startIndex: startIndex, maxResults: perPage)) {
             apiService.request(with: request)
@@ -61,7 +62,7 @@ class BookListViewModel: ViewModelType {
                         self?.totalItemsCount = bookList.totalItems
                     }
                     self?.process(bookList: bookList)
-                    self?.isRequesting = false
+                    self?.state.isRequesting.accept(false)
                 }, onFailure: {
                     self.state.bookListData.onNext(.failure($0))
                 })
