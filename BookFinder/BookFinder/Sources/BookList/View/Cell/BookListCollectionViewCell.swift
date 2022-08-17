@@ -8,6 +8,8 @@
 import UIKit
 
 class BookListCollectionViewCell: UICollectionViewCell {
+    private let contentsLimitWidth = UIScreen.main.bounds.width - 120
+    
     private let bookCoverImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFill
         $0.addBorder(color: .lightGray, width: 0.5)
@@ -17,7 +19,7 @@ class BookListCollectionViewCell: UICollectionViewCell {
     private let titleLabel = UILabel().then {
         $0.font = UIFont.setFont(type: .bold, size: 16)
         $0.textColor = .black
-        $0.textAlignment = .center
+        $0.numberOfLines = 0
     }
     
     private let authorLabel = UILabel().then {
@@ -53,7 +55,7 @@ class BookListCollectionViewCell: UICollectionViewCell {
 
     private func setupConstraints() {
         bookCoverImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(12)
+            $0.top.equalToSuperview().inset(14)
             $0.leading.equalToSuperview().inset(24)
             $0.width.equalTo(50)
             $0.height.equalTo(70)
@@ -62,10 +64,11 @@ class BookListCollectionViewCell: UICollectionViewCell {
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(bookCoverImageView.snp.top).offset(2)
             $0.leading.equalTo(bookCoverImageView.snp.trailing).offset(24)
+            $0.width.equalTo(contentsLimitWidth)
         }
         
         authorLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.top).offset(36)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(18)
             $0.leading.equalTo(titleLabel.snp.leading)
         }
         
@@ -75,13 +78,12 @@ class BookListCollectionViewCell: UICollectionViewCell {
         }
         
         lineView.snp.makeConstraints {
-            $0.bottom.equalToSuperview()
+            $0.top.equalToSuperview()
             $0.centerX.width.equalToSuperview()
             $0.height.equalTo(0.2)
         }
     }
 
-    //FIXME: 실제 data param
     func setupUI(data: BookItem) {
         bookCoverImageView.image = UIImage(named: "testImage")
         titleLabel.text = data.volumeInfo.title

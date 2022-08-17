@@ -10,37 +10,38 @@ import RxSwift
 
 class BookDetailViewController: UIViewController {
     private let disposeBag = DisposeBag()
+    private let contentsLimitWidth = UIScreen.main.bounds.width - 48
     
     private let bookCoverImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFill
     }
 
     private let titleLabel = UILabel().then {
-        $0.font = UIFont.setFont(type: .bold, size: 24)
+        $0.font = UIFont.setFont(type: .bold, size: 20)
         $0.textColor = .black
-        $0.textAlignment = .center
+        $0.numberOfLines = 0
     }
 
     private let subTitleLabel = UILabel().then {
-        $0.font = UIFont.setFont(type: .bold, size: 20)
+        $0.font = UIFont.setFont(type: .bold, size: 18)
         $0.textColor = .black
         $0.textAlignment = .center
     }
 
     private let authorLabel = UILabel().then {
-        $0.font = UIFont.setFont(type: .medium, size: 18)
+        $0.font = UIFont.setFont(type: .medium, size: 16)
         $0.textColor = .darkGray
         $0.textAlignment = .center
     }
 
     private let publishedDateLabel = UILabel().then {
-        $0.font = UIFont.setFont(type: .medium, size: 18)
+        $0.font = UIFont.setFont(type: .medium, size: 16)
         $0.textColor = .darkGray
         $0.textAlignment = .center
     }
 
     private let descriptionTextView = UITextView().then {
-        $0.font = UIFont.setFont(type: .medium, size: 18)
+        $0.font = UIFont.setFont(type: .medium, size: 16)
         $0.textColor = .black
         $0.textAlignment = .justified
         $0.showsVerticalScrollIndicator = false
@@ -83,6 +84,7 @@ class BookDetailViewController: UIViewController {
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(bookCoverImageView.snp.bottom).offset(18)
             $0.leading.equalTo(bookCoverImageView.snp.leading)
+            $0.width.equalTo(contentsLimitWidth)
         }
 
         subTitleLabel.snp.makeConstraints {
@@ -105,7 +107,7 @@ class BookDetailViewController: UIViewController {
             $0.leading.equalTo(bookCoverImageView.snp.leading)
             $0.centerX.equalToSuperview()
             $0.width.equalToSuperview().inset(24)
-            $0.height.equalTo(250)
+            $0.height.equalTo(200)
         }
     }
 

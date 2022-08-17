@@ -26,10 +26,6 @@ class BookListViewController: UIViewController {
         $0.font = UIFont.setFont(type: .regular, size: 14)
     }
 
-    private let lineView = UIView().then {
-        $0.backgroundColor = .lightGray
-    }
-
     private let bookListCollectionViewFlowLayout = UICollectionViewFlowLayout().then {
         $0.scrollDirection = .vertical
         $0.minimumLineSpacing = 4
@@ -57,7 +53,7 @@ class BookListViewController: UIViewController {
     }
 
     private func setupSubViews() {
-        view.addSubviews([searchResultCountLabel, lineView, bookListCollectionView])
+        view.addSubviews([searchResultCountLabel, bookListCollectionView])
     }
 
     private func setupConstraints() {
@@ -66,14 +62,8 @@ class BookListViewController: UIViewController {
             $0.leading.equalToSuperview().inset(24)
         }
 
-        lineView.snp.makeConstraints {
-            $0.top.equalTo(searchResultCountLabel.snp.bottom).offset(6)
-            $0.centerX.width.equalToSuperview()
-            $0.height.equalTo(0.2)
-        }
-
         bookListCollectionView.snp.makeConstraints {
-            $0.top.equalTo(lineView.snp.bottom).offset(6)
+            $0.top.equalTo(searchResultCountLabel.snp.bottom).offset(10)
             $0.centerX.width.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
@@ -186,7 +176,14 @@ extension BookListViewController: UICollectionViewDelegate {
 
 // MARK: UICollectionViewDelegateFlowLayout
 extension BookListViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 100)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {       
+        let cellSize = NSString(string: bookItems[indexPath.row].volumeInfo.title).boundingRect(
+                    with: CGSize(width: UIScreen.main.bounds.width - 120, height: CGFloat.greatestFiniteMagnitude),
+                    options: .usesLineFragmentOrigin,
+                    attributes: [
+                            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)
+                    ],
+                    context: nil)
+        return CGSize(width: collectionView.frame.width, height: cellSize.height + 80)
     }
 }
