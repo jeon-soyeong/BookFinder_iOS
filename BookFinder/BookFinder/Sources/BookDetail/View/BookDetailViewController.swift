@@ -13,7 +13,7 @@ class BookDetailViewController: UIViewController {
     private let contentsLimitWidth = UIScreen.main.bounds.width - 48
     
     private let bookCoverImageView = UIImageView().then {
-        $0.contentMode = .scaleAspectFill
+        $0.contentMode = .scaleToFill
     }
 
     private let titleLabel = UILabel().then {
@@ -126,7 +126,11 @@ class BookDetailViewController: UIViewController {
     }
 
     func setupUI(data: BookItem) {
-        bookCoverImageView.image = UIImage(named: "testImage")
+        if let thumbnailImage = data.volumeInfo.imageLinks?.thumbnail {
+            bookCoverImageView.setImage(with: thumbnailImage, disposeBag: disposeBag)
+        } else {
+            bookCoverImageView.image = UIImage(named: "defaultImage")
+        }
         titleLabel.text = data.volumeInfo.title
         subTitleLabel.text = data.volumeInfo.subtitle
         authorLabel.text = data.volumeInfo.authors?.first

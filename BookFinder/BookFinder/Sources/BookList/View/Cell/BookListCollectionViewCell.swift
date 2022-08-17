@@ -7,11 +7,14 @@
 
 import UIKit
 
+import RxSwift
+
 class BookListCollectionViewCell: UICollectionViewCell {
+    private let disposeBag = DisposeBag()
     private let contentsLimitWidth = UIScreen.main.bounds.width - 120
     
     private let bookCoverImageView = UIImageView().then {
-        $0.contentMode = .scaleAspectFill
+        $0.contentMode = .scaleToFill
         $0.addBorder(color: .lightGray, width: 0.5)
         $0.addShadow()
     }
@@ -85,7 +88,11 @@ class BookListCollectionViewCell: UICollectionViewCell {
     }
 
     func setupUI(data: BookItem) {
-        bookCoverImageView.image = UIImage(named: "testImage")
+        if let thumbnailImage = data.volumeInfo.imageLinks?.thumbnail {
+            bookCoverImageView.setImage(with: thumbnailImage, disposeBag: disposeBag)
+        } else {
+            bookCoverImageView.image = UIImage(named: "defaultImage")
+        }
         titleLabel.text = data.volumeInfo.title
         authorLabel.text = data.volumeInfo.authors?.first
         publishedDateLabel.text = data.volumeInfo.publishedDate

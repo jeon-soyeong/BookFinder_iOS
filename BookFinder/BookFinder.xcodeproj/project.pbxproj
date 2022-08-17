@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		53C003587C7BD920C5CB021E /* Pods_BookFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45772714FC3B3EE37100FA1D /* Pods_BookFinder.framework */; };
 		7B3C8103113DB757DA404F76 /* Pods_BookFinder_BookFinderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6233B40624B87BF65A860294 /* Pods_BookFinder_BookFinderUITests.framework */; };
+		9B623AB728ACDA1600A5F59D /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B623AB628ACDA1600A5F59D /* ImageCacheManager.swift */; };
+		9B623AB928ACDA8500A5F59D /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B623AB828ACDA8500A5F59D /* UIImageView+Extension.swift */; };
 		9B6F972128AB9C040005F870 /* BookListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F972028AB9C040005F870 /* BookListViewModel.swift */; };
 		9B6F972428AB9C280005F870 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F972328AB9C280005F870 /* ViewModelType.swift */; };
 		9B6F972628AB9D200005F870 /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F972528AB9D200005F870 /* URLRequest+Extension.swift */; };
@@ -59,6 +61,8 @@
 		07E65237A170DE04FDCBDF90 /* Pods-BookFinderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookFinderTests.release.xcconfig"; path = "Target Support Files/Pods-BookFinderTests/Pods-BookFinderTests.release.xcconfig"; sourceTree = "<group>"; };
 		45772714FC3B3EE37100FA1D /* Pods_BookFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6233B40624B87BF65A860294 /* Pods_BookFinder_BookFinderUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookFinder_BookFinderUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B623AB628ACDA1600A5F59D /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
+		9B623AB828ACDA8500A5F59D /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		9B6F972028AB9C040005F870 /* BookListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListViewModel.swift; sourceTree = "<group>"; };
 		9B6F972328AB9C280005F870 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		9B6F972528AB9D200005F870 /* URLRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				9B6F973828ACBC890005F870 /* LoadingActivityIndicatorManager.swift */,
+				9B623AB628ACDA1600A5F59D /* ImageCacheManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -320,6 +325,7 @@
 				9BD8362228AB70DA00183B9D /* UICollectionView+Extension.swift */,
 				9B6F972528AB9D200005F870 /* URLRequest+Extension.swift */,
 				9B6F973528AC9DCC0005F870 /* UIViewController+Extension.swift */,
+				9B623AB828ACDA8500A5F59D /* UIImageView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -579,9 +585,11 @@
 				9BD8362328AB70DA00183B9D /* UICollectionView+Extension.swift in Sources */,
 				9BD8362628AB713900183B9D /* BookListCollectionViewCell.swift in Sources */,
 				9BD835DF28AB2F4000183B9D /* AppDelegate.swift in Sources */,
+				9B623AB928ACDA8500A5F59D /* UIImageView+Extension.swift in Sources */,
 				9BD835E128AB2F4000183B9D /* SceneDelegate.swift in Sources */,
 				9B6F972128AB9C040005F870 /* BookListViewModel.swift in Sources */,
 				9BD8361C28AB327900183B9D /* BookDetailViewController.swift in Sources */,
+				9B623AB728ACDA1600A5F59D /* ImageCacheManager.swift in Sources */,
 				9BD8361F28AB698C00183B9D /* UIFont+Extension.swift in Sources */,
 				9B6F972C28AB9F740005F870 /* APIConstants.swift in Sources */,
 				9B6F972828AB9E590005F870 /* EndPointType.swift in Sources */,
