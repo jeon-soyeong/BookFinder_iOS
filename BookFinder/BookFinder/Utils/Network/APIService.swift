@@ -15,18 +15,14 @@ class APIService {
     func request<T: Codable>(with url: URLRequest) -> Single<T> {
         return Single<T>.create { [weak self] single in
             let task = self?.session.dataTask(with: url) { (data, response, error) in
-                if let error = error {
-                    single(.failure(error))
+                guard let data = data else {
+                    single(.failure(APIError.failedData))
                     return
                 }
-                guard let data = data,
-                      let parsedResponse = try? JSONDecoder().decode(T.self, from: data) else {
-                          return
-                      }
-                let object = try? JSONSerialization.jsonObject(with: data)
-                let data2 = try? JSONSerialization.data(withJSONObject: object, options: .prettyPrinted)
-                print("resp: \(NSString.init(data: data2!, encoding: String.Encoding.utf8.rawValue))")
-//                print("parsedResponse: \(parsedResponse)")
+                guard let parsedResponse = try? JSONDecoder().decode(T.self, from: data) else {
+                    single(.failure(APIError.failedDecode))
+                    return
+                }
                 single(.success(parsedResponse))
             }
             task?.resume()
