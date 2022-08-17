@@ -53,7 +53,8 @@ class BookListCollectionViewCell: UICollectionViewCell {
 
     private func setupConstraints() {
         bookCoverImageView.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().inset(12)
+            $0.top.equalToSuperview().inset(12)
+            $0.leading.equalToSuperview().inset(24)
             $0.width.equalTo(50)
             $0.height.equalTo(70)
         }
