@@ -8,7 +8,7 @@
 import Foundation
 
 enum BookFinderAPI: EndPointType {
-    case getBookItem(q: String, startIndex: Int)
+    case getBookItem(q: String, startIndex: Int, maxResults: Int)
     
     var baseURL: String {
         return APIConstants.baseURL
@@ -23,9 +23,10 @@ enum BookFinderAPI: EndPointType {
 
     var query: [URLQueryItem]? {
         switch self {
-        case .getBookItem(let q, let startIndex):
+        case .getBookItem(let q, let startIndex, let maxResults):
             return [URLQueryItem(name: "q", value: "\(q)"),
-//                    URLQueryItem(name: "startIndex", value: "\(startIndex)"),
+                    URLQueryItem(name: "startIndex", value: "\(startIndex)"),
+                    URLQueryItem(name: "maxResults", value: "\(maxResults)"),
                     URLQueryItem(name: "key", value: APIConstants.apiKey)]
         }
     }

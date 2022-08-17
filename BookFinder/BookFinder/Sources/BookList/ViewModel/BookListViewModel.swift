@@ -8,31 +8,40 @@
 import Foundation
 
 import RxSwift
-import RxRelay
 
 class BookListViewModel: ViewModelType {
     var disposeBag = DisposeBag()
-    let apiService = APIService()
-    
+    private let apiService = APIService()
+    private(set) var currentPage = 1
+    private(set) var startIndex = 0
+    private(set) var perPage = 20
+    private(set) var currentItemCount = 0
     private(set) var isRequestCompleted = false
     private(set) var isRequesting = false
-    
+    private(set) var totalItemsCount = 0
+
     struct Action {
         let didSearch = PublishSubject<String>()
     }
-    
+
     struct State {
-        let bookListData = PublishSubject<BookList>()
-//        let bookListData = BehaviorRelay<BookList>(value: nil)
+        let bookListData = PublishSubject<Result<BookList, Error>>()
     }
-    
+
     var action = Action()
     var state = State()
-    
+
     init() {
         self.configure()
     }
-    
+
+    func initialize() {
+        currentPage = 1
+        isRequestCompleted = false
+        currentItemCount = 0
+        totalItemsCount = 0
+    }
+
     private func configure() {
         action.didSearch
             .subscribe(onNext: { [weak self]  in
@@ -40,45 +49,31 @@ class BookListViewModel: ViewModelType {
             })
             .disposed(by: disposeBag)
     }
-    
+
     private func requestBookListData(query: String) {
         self.isRequesting = true
-        
-        if let request = URLRequest(type: BookFinderAPI.getBookItem(q: query, startIndex: 1)) {
+        startIndex = (currentPage - 1) * perPage
+        if let request = URLRequest(type: BookFinderAPI.getBookItem(q: query, startIndex: startIndex, maxResults: perPage)) {
             apiService.request(with: request)
                 .subscribe(onSuccess: { [weak self] (bookList: BookList) in
                     print("bookList: \(bookList)")
-                    self?.state.bookListData.onNext(bookList)
+                    if self?.totalItemsCount == 0 {
+                        self?.totalItemsCount = bookList.totalItems
+                    }
+                    self?.process(bookList: bookList)
                     self?.isRequesting = false
                 }, onFailure: {
-                    print($0)
+                    self.state.bookListData.onNext(.failure($0))
                 })
                 .disposed(by: disposeBag)
         }
-        
-        
-        
-        
-//        APIService.shared.request(GitHubAPI.getUserStarRepositoryData(page: currentPage, perPage: perPage))
-//            .subscribe(onSuccess: { [weak self] (userRepositories: [UserRepository]) in
-//                self?.process(userRepositories: userRepositories)
-//                self?.isRequesting = false
-//            }, onFailure: {
-//                print($0)
-//            })
-//            .disposed(by: disposeBag)
     }
-    
-//    func process(userRepositories: [UserRepository]) {
-//        if currentPage != 1 {
-//            isRequestCompleted = userRepositories.isEmpty
-//        }
-//        currentPage += 1
-//        for item in userRepositories {
-//            section.append(item)
-//        }
-//        if isRequestCompleted == false {
-//            state.userStarRepositoryData.accept([UserRepositorySection(model: Void(), items: section)])
-//        }
-//    }
+
+    func process(bookList: BookList) {
+        currentItemCount += perPage
+        isRequestCompleted = totalItemsCount <= currentItemCount
+        print("isRequestCompleted: \(isRequestCompleted)")
+        currentPage += 1
+        state.bookListData.onNext(.success(bookList))
+    }
 }
