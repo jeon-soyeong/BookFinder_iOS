@@ -91,7 +91,24 @@ class BookListViewController: UIViewController {
                 }
             }
             .disposed(by: self.disposeBag)
-
+        
+        searchController.searchBar.rx.cancelButtonClicked
+            .bind { [weak self] _ in
+                self?.initialize()
+                self?.searchResultCountLabel.text = nil
+                self?.searchResultCountLabel.isHidden = true
+            }
+            .disposed(by: self.disposeBag)
+        
+        searchController.searchBar.rx.text
+            .map { $0?.isEmpty }
+            .bind { [weak self] in
+                self?.initialize()
+                self?.searchResultCountLabel.text = nil
+                self?.searchResultCountLabel.isHidden = true
+            }
+            .disposed(by: self.disposeBag)
+        
         bookListCollectionView.rx.prefetchItems
             .compactMap(\.last?.item)
             .withUnretained(self)
