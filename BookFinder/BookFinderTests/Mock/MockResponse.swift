@@ -13,7 +13,10 @@ class MockResponse {
     var error: Error?
     var statusCode: Int
 
-    init(url: String, responseData: Data? = nil, error: Error? = nil, statusCode: Int = 200) {
+    init(url: String,
+         responseData: Data? = nil,
+         error: Error? = nil,
+         statusCode: Int = 200) {
         self.url = url
         self.responseData = responseData
         self.error = error

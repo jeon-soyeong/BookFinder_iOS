@@ -11,10 +11,6 @@ class MockURLSessionDataTask: URLSessionDataTask {
     var completionHandler: ((Data?, URLResponse?, Error?) -> Void)?
     var mockResponse: MockResponse?
 
-    override init() {
-        super.init()
-    }
-
     override func resume() {
         let response: HTTPURLResponse?
         

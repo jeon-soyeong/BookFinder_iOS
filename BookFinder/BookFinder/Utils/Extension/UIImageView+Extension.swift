@@ -13,21 +13,24 @@ import RxSwift
 extension UIImageView {
     func setImage(with url: String, disposeBag: DisposeBag) {
         let imageCacheManager = ImageCacheManager.shared
-
-        if let imageUrl = URL(string: url) {
-            guard let cachedData = imageCacheManager.read(with: url) else {
-                imageCacheManager.requestImage(imageUrl)
-                    .observe(on: MainScheduler.instance)
-                    .subscribe(onSuccess: { [weak self] image in
-                        self?.image = image
-                    }, onFailure: { error in
-                        print(error)
-                    })
-                    .disposed(by: disposeBag)
-                return
+        
+        guard let cachedData = imageCacheManager.read(with: url) else {
+            if let imageUrl = URL(string: url) {
+                let task = URLSession.shared.dataTask(with: imageUrl) { [weak self] (data, response, error) in
+                    guard let data = data else {
+                        return
+                    }
+                    if let downloadedImage = UIImage(data: data) {
+                        imageCacheManager.save(data: CachedImage(imageData: data), with: url)
+                        DispatchQueue.main.async {
+                            self?.image = downloadedImage
+                        }
+                    }
+                }
+                task.resume()
             }
-
-            self.image = UIImage(data: cachedData.imageData)
+            return
         }
+        self.image = UIImage(data: cachedData.imageData)
     }
 }
