@@ -23,7 +23,7 @@ class BookListViewController: UIViewController {
         $0.searchTextField.layer.cornerRadius = 20
         $0.placeholder = "책 또는 저자를 검색해주세요📚"
     }
-    
+
     private let searchResultCountLabel = UILabel().then {
         $0.font = UIFont.setFont(type: .regular, size: 14)
         $0.textColor = .black
@@ -39,7 +39,7 @@ class BookListViewController: UIViewController {
         $0.backgroundColor = .white
         $0.keyboardDismissMode = .onDrag
     }
-    
+
     private lazy var activityIndicator = UIActivityIndicatorView().then {
         $0.center = view.center
         $0.style = .large
@@ -85,13 +85,13 @@ class BookListViewController: UIViewController {
         bookListCollectionView.delegate = self
         bookListCollectionView.registerCell(cellType: BookListCollectionViewCell.self)
     }
-    
+
     private func setupGestureRecognizer(to view: UIView) {
         let tapGestureRecognizer = UITapGestureRecognizer().then {
             $0.cancelsTouchesInView = false
             view.addGestureRecognizer($0)
         }
-        
+
         tapGestureRecognizer.rx.event
             .subscribe(onNext: { [weak self] _ in
                 self?.searchBar.resignFirstResponder()
@@ -104,13 +104,12 @@ class BookListViewController: UIViewController {
             .bind { [weak self] _ in
                 self?.initialize()
                 if let searchText = self?.searchBar.searchTextField.text {
-                    print("searchText: \(searchText)")
                     self?.searchBar.resignFirstResponder()
                     self?.viewModel.action.didSearch.onNext((searchText))
                 }
             }
             .disposed(by: self.disposeBag)
-        
+
         searchBar.searchTextField.rx.text
             .orEmpty
             .filter { $0.isEmpty }
@@ -119,7 +118,7 @@ class BookListViewController: UIViewController {
                 self?.hideSearchResultCountLabel()
             }
             .disposed(by: self.disposeBag)
-        
+
         bookListCollectionView.rx.prefetchItems
             .compactMap(\.last?.item)
             .withUnretained(self)
@@ -127,7 +126,7 @@ class BookListViewController: UIViewController {
                 if self?.viewModel.isRequestCompleted == false {
                     if let searchText = self?.searchBar.searchTextField.text,
                        let dataCount = self?.bookItems.count,
-                       item >= dataCount - 5,
+                       item >= dataCount - 3,
                        self?.isRequesting == false {
                         self?.viewModel.action.didSearch.onNext((searchText))
                     }
@@ -162,7 +161,7 @@ class BookListViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
-        
+
         viewModel.state.isRequesting
             .subscribe(onNext: { [weak self] isRequesting in
                 self?.isRequesting = isRequesting
@@ -183,7 +182,7 @@ class BookListViewController: UIViewController {
         bookListCollectionView.contentOffset = .zero
         bookListCollectionView.reloadData()
     }
-    
+
     private func hideSearchResultCountLabel() {
         searchResultCountLabel.text = nil
         searchResultCountLabel.isHidden = true
@@ -194,7 +193,7 @@ class BookListViewController: UIViewController {
             self.activityIndicator.startAnimating()
         }
     }
-    
+
     private func hideActivityIndicator() {
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
@@ -207,12 +206,12 @@ extension BookListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return bookItems.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookListCollectionViewCell", for: indexPath)
         let bookListCollectionViewCell = cell as? BookListCollectionViewCell
         bookListCollectionViewCell?.setupUI(data: bookItems[indexPath.item])
-        
+
         return cell
     }
 }

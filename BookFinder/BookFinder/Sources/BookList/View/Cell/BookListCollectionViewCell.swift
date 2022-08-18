@@ -24,19 +24,19 @@ class BookListCollectionViewCell: UICollectionViewCell {
         $0.textColor = .black
         $0.numberOfLines = 0
     }
-    
+
     private let authorLabel = UILabel().then {
         $0.font = UIFont.setFont(type: .medium, size: 12)
         $0.textColor = .darkGray
         $0.numberOfLines = 0
     }
-    
+
     private let publishedDateLabel = UILabel().then {
         $0.font = UIFont.setFont(type: .medium, size: 12)
         $0.textColor = .darkGray
         $0.textAlignment = .center
     }
-    
+
     private let lineView = UIView().then {
         $0.backgroundColor = .lightGray
     }
@@ -69,18 +69,18 @@ class BookListCollectionViewCell: UICollectionViewCell {
             $0.leading.equalTo(bookCoverImageView.snp.trailing).offset(24)
             $0.width.equalTo(contentsLimitWidth)
         }
-        
+
         authorLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(18)
             $0.leading.equalTo(titleLabel.snp.leading)
             $0.width.equalTo(contentsLimitWidth)
         }
-        
+
         publishedDateLabel.snp.makeConstraints {
             $0.top.equalTo(authorLabel.snp.bottom).offset(10)
             $0.leading.equalTo(authorLabel.snp.leading)
         }
-        
+
         lineView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.centerX.width.equalToSuperview()

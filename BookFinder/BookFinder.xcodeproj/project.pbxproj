@@ -31,6 +31,10 @@
 		9B55468A28ADEE99009F993E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD835DE28AB2F4000183B9D /* AppDelegate.swift */; };
 		9B623AB728ACDA1600A5F59D /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B623AB628ACDA1600A5F59D /* ImageCacheManager.swift */; };
 		9B623AB928ACDA8500A5F59D /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B623AB828ACDA8500A5F59D /* UIImageView+Extension.swift */; };
+		9B6C7A3C28AE44220058F022 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C7A3B28AE44220058F022 /* MockURLSession.swift */; };
+		9B6C7A3E28AE44620058F022 /* MockResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C7A3D28AE44620058F022 /* MockResponse.swift */; };
+		9B6C7A4028AE477F0058F022 /* MockURLSessionDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C7A3F28AE477F0058F022 /* MockURLSessionDataTask.swift */; };
+		9B6C7A4428AE6A390058F022 /* BookSearchResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B6C7A4328AE6A390058F022 /* BookSearchResult.json */; };
 		9B6F972128AB9C040005F870 /* BookListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F972028AB9C040005F870 /* BookListViewModel.swift */; };
 		9B6F972428AB9C280005F870 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F972328AB9C280005F870 /* ViewModelType.swift */; };
 		9B6F972628AB9D200005F870 /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F972528AB9D200005F870 /* URLRequest+Extension.swift */; };
@@ -82,6 +86,10 @@
 		6233B40624B87BF65A860294 /* Pods_BookFinder_BookFinderUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookFinder_BookFinderUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B623AB628ACDA1600A5F59D /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		9B623AB828ACDA8500A5F59D /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		9B6C7A3B28AE44220058F022 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
+		9B6C7A3D28AE44620058F022 /* MockResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockResponse.swift; sourceTree = "<group>"; };
+		9B6C7A3F28AE477F0058F022 /* MockURLSessionDataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSessionDataTask.swift; sourceTree = "<group>"; };
+		9B6C7A4328AE6A390058F022 /* BookSearchResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BookSearchResult.json; sourceTree = "<group>"; };
 		9B6F972028AB9C040005F870 /* BookListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListViewModel.swift; sourceTree = "<group>"; };
 		9B6F972328AB9C280005F870 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		9B6F972528AB9D200005F870 /* URLRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
@@ -166,6 +174,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9B6C7A3A28AE44020058F022 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				9B6C7A3B28AE44220058F022 /* MockURLSession.swift */,
+				9B6C7A3D28AE44620058F022 /* MockResponse.swift */,
+				9B6C7A3F28AE477F0058F022 /* MockURLSessionDataTask.swift */,
+				9B6C7A4328AE6A390058F022 /* BookSearchResult.json */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		9B6F971F28AB9BCC0005F870 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +249,7 @@
 		9BD835F428AB2F4600183B9D /* BookFinderTests */ = {
 			isa = PBXGroup;
 			children = (
+				9B6C7A3A28AE44020058F022 /* Mock */,
 				9BD835F528AB2F4600183B9D /* BookFinderTests.swift */,
 			);
 			path = BookFinderTests;
@@ -473,6 +493,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B6C7A4428AE6A390058F022 /* BookSearchResult.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,12 +655,15 @@
 				9B55467E28ADEE6D009F993E /* APIConstants.swift in Sources */,
 				9B55467828ADEE5D009F993E /* UIFont+Extension.swift in Sources */,
 				9B55468628ADEE8B009F993E /* BookListViewController.swift in Sources */,
+				9B6C7A3C28AE44220058F022 /* MockURLSession.swift in Sources */,
 				9B55467928ADEE60009F993E /* UIView+Extension.swift in Sources */,
 				9B55468028ADEE72009F993E /* APIService.swift in Sources */,
 				9B55468828ADEE92009F993E /* BookDetailViewController.swift in Sources */,
 				9B55468728ADEE8F009F993E /* BookListViewModel.swift in Sources */,
 				9B55467728ADEE54009F993E /* EndPointType.swift in Sources */,
 				9B55468128ADEE74009F993E /* APIError.swift in Sources */,
+				9B6C7A4028AE477F0058F022 /* MockURLSessionDataTask.swift in Sources */,
+				9B6C7A3E28AE44620058F022 /* MockResponse.swift in Sources */,
 				9B55468528ADEE88009F993E /* BookListCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -720,7 +744,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -775,7 +799,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

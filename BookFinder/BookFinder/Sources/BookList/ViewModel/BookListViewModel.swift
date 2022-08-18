@@ -12,13 +12,13 @@ import RxRelay
 
 class BookListViewModel: ViewModelType {
     var disposeBag = DisposeBag()
+    var totalItemsCount = 0
     private let apiService = APIService()
     private(set) var currentPage = 1
     private(set) var startIndex = 0
     private(set) var perPage = 20
     private(set) var currentItemCount = 0
     private(set) var isRequestCompleted = false
-    private(set) var totalItemsCount = 0
 
     struct Action {
         let didSearch = PublishSubject<String>()
@@ -54,26 +54,26 @@ class BookListViewModel: ViewModelType {
     private func requestBookListData(query: String) {
         self.state.isRequesting.accept(true)
         startIndex = (currentPage - 1) * perPage
-        if let request = URLRequest(type: BookFinderAPI.getBookItem(q: query, startIndex: startIndex, maxResults: perPage)) {
-            apiService.request(with: request)
-                .subscribe(onSuccess: { [weak self] (bookList: BookList) in
-                    print("bookList: \(bookList)")
-                    if self?.totalItemsCount == 0 {
-                        self?.totalItemsCount = bookList.totalItems
-                    }
-                    self?.process(bookList: bookList)
-                    self?.state.isRequesting.accept(false)
-                }, onFailure: {
-                    self.state.bookListData.onNext(.failure($0))
-                })
-                .disposed(by: disposeBag)
+        
+        guard let request = URLRequest(type: BookFinderAPI.getBookItem(q: query, startIndex: startIndex, maxResults: perPage)) else {
+            return
         }
+        apiService.request(with: request)
+            .subscribe(onSuccess: { [weak self] (bookList: BookList) in
+                if self?.totalItemsCount == 0 {
+                    self?.totalItemsCount = bookList.totalItems
+                }
+                self?.process(bookList: bookList)
+                self?.state.isRequesting.accept(false)
+            }, onFailure: {
+                self.state.bookListData.onNext(.failure($0))
+            })
+            .disposed(by: disposeBag)
     }
 
     func process(bookList: BookList) {
         currentItemCount += perPage
         isRequestCompleted = totalItemsCount <= currentItemCount
-        print("isRequestCompleted: \(isRequestCompleted)")
         currentPage += 1
         state.bookListData.onNext(.success(bookList))
     }

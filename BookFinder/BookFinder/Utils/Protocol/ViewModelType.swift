@@ -12,6 +12,6 @@ import RxSwift
 protocol ViewModelType {
     associatedtype Action
     associatedtype State
-    
+
     var disposeBag: DisposeBag { get set }
 }

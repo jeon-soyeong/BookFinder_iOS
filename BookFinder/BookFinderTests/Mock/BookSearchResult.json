@@ -1,0 +1,63 @@
+{
+  "kind" : "books#volumes",
+  "totalItems" : 2251,
+  "items" : [
+    {
+      "selfLink" : "https:\/\/www.googleapis.com\/books\/v1\/volumes\/6UwZzwEACAAJ",
+      "volumeInfo" : {
+        "infoLink" : "http:\/\/books.google.co.kr\/books?id=6UwZzwEACAAJ&dq=%EC%84%B1%EC%9E%A5&hl=&source=gbs_api",
+        "contentVersion" : "preview-1.0.0",
+        "readingModes" : {
+          "image" : false,
+          "text" : false
+        },
+        "canonicalVolumeLink" : "https:\/\/books.google.com\/books\/about\/%EC%9D%BC%ED%95%98%EB%A9%B4%EC%84%9C_%EC%84%B1%EC%9E%A5%ED%95%98%EA%B3%A0_%EC%9E%88%EC%8A%B5%EB%8B%88%EB%8B%A4.html?hl=&id=6UwZzwEACAAJ",
+        "authors" : [
+          "박소연"
+        ],
+        "publishedDate" : "2022-04-20",
+        "title" : "일하면서 성장하고 있습니다",
+        "industryIdentifiers" : [
+          {
+            "type" : "ISBN_13",
+            "identifier" : "9791165219352"
+          }
+        ],
+        "printType" : "BOOK",
+        "maturityRating" : "NOT_MATURE",
+        "allowAnonLogging" : false,
+        "pageCount" : 410,
+        "language" : "ko",
+        "previewLink" : "http:\/\/books.google.co.kr\/books?id=6UwZzwEACAAJ&dq=%EC%84%B1%EC%9E%A5&hl=&cd=1&source=gbs_api",
+        "panelizationSummary" : {
+          "containsImageBubbles" : false,
+          "containsEpubBubbles" : false
+        }
+      },
+      "id" : "6UwZzwEACAAJ",
+      "saleInfo" : {
+        "country" : "KR",
+        "saleability" : "NOT_FOR_SALE",
+        "isEbook" : false
+      },
+      "accessInfo" : {
+        "viewability" : "NO_PAGES",
+        "publicDomain" : false,
+        "country" : "KR",
+        "accessViewStatus" : "NONE",
+        "webReaderLink" : "http:\/\/play.google.com\/books\/reader?id=6UwZzwEACAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "quoteSharingAllowed" : false,
+        "textToSpeechPermission" : "ALLOWED",
+        "pdf" : {
+          "isAvailable" : false
+        },
+        "embeddable" : false,
+        "epub" : {
+          "isAvailable" : false
+        }
+      },
+      "kind" : "books#volume",
+      "etag" : "46Rzsd0xRpc"
+    }
+  ]
+}

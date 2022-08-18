@@ -11,16 +11,16 @@ import RxSwift
 class BookDetailViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let contentsLimitWidth = UIScreen.main.bounds.width - 48
-    
+
     private let scrollView = UIScrollView().then {
         $0.backgroundColor = .white
         $0.showsVerticalScrollIndicator = false
     }
-    
+
     private let contentView = UIView().then {
         $0.backgroundColor = .clear
     }
-    
+
     private let bookCoverImageView = UIImageView().then {
         $0.contentMode = .scaleToFill
         $0.addBorder(color: .lightGray, width: 0.5)
@@ -87,19 +87,19 @@ class BookDetailViewController: UIViewController {
         contentView.addSubviews([bookCoverImageView, titleLabel, subTitleLabel, authorLabel, publishedDateLabel, descriptionTextView])
         setupConstraints()
     }
-    
+
     private func setupConstraints() {
         scrollView.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.bottom.equalToSuperview()
         }
-        
+
         contentView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.width.equalToSuperview()
             $0.centerX.bottom.equalToSuperview()
         }
-        
+
         bookCoverImageView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(24)
             $0.leading.equalToSuperview().inset(24)

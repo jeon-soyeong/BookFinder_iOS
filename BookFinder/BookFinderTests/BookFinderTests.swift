@@ -8,26 +8,75 @@
 import XCTest
 @testable import BookFinder
 
+import RxSwift
+
 class BookFinderTests: XCTestCase {
+    let apiService = APIService()
+    let disposeBag = DisposeBag()
+    let bookListViewModel = BookListViewModel()
+    var responseData: Data?
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        guard let path = Bundle(for: type(of: self)).path(forResource: "BookSearchResult", ofType: "json"),
+              let jsonString = try? String(contentsOfFile: path) else {
+            return
         }
+        responseData = jsonString.data(using: .utf8)
+    }
+    
+    func test_givenMockURLSession_whenRequestGetBookItem_ThenSuccess() throws {
+        let mockURLSession = MockURLSession()
+        mockURLSession.mockResponse = MockResponse(url: "https://www.googleapis.com/books/v1/volumes", responseData: responseData, error: nil, statusCode: 200)
+        apiService.session = mockURLSession
+
+        guard let request = URLRequest(type: BookFinderAPI.getBookItem(q: "성장", startIndex: 0, maxResults: 20)) else {
+            XCTFail()
+            return
+        }
+        apiService.request(with: request)
+            .subscribe(onSuccess: { (bookList: BookList) in
+                XCTAssertNotNil(bookList)
+                XCTAssertEqual(bookList.items?.first?.volumeInfo.title, "일하면서 성장하고 있습니다")
+                XCTAssertEqual(bookList.items?.first?.volumeInfo.authors?.first, "박소연")
+                XCTAssertNotEqual(bookList.items?.first?.volumeInfo.authors?.first, "박연")
+            })
+            .disposed(by: disposeBag)
     }
 
+    func test_givenAPIService_whenRequestGetBookItem_ThenSuccess() throws {
+        let expectation = XCTestExpectation(description: "GetBookItem API Test")
+
+        guard let request = URLRequest(type: BookFinderAPI.getBookItem(q: "온도", startIndex: 0, maxResults: 20)) else {
+            XCTFail()
+            return
+        }
+        apiService.request(with: request)
+            .subscribe(onSuccess: { (bookList: BookList) in
+                XCTAssertNotNil(bookList)
+                XCTAssertEqual(bookList.items?.first?.volumeInfo.title, "관계의 온도")
+                XCTAssertEqual(bookList.items?.first?.volumeInfo.authors?.first, "이금이")
+                XCTAssertNotEqual(bookList.items?.first?.volumeInfo.authors?.first, "이금희희")
+                
+                expectation.fulfill()
+            })
+            .disposed(by: disposeBag)
+        wait(for: [expectation], timeout: 10.0)
+    }
+
+    func test_givenBookListViewModel_WhenPagingProcess_ThenSuccess() throws {
+        guard let responseData = responseData else { return }
+        let bookList = try JSONDecoder().decode(BookList.self, from: responseData)
+
+        bookListViewModel.totalItemsCount = 40
+
+        bookListViewModel.process(bookList: bookList)
+        XCTAssertTrue(bookListViewModel.currentPage == 2)
+        XCTAssertTrue(bookListViewModel.currentItemCount == 20)
+        XCTAssertFalse(bookListViewModel.isRequestCompleted == true)
+
+        bookListViewModel.process(bookList: bookList)
+        XCTAssertTrue(bookListViewModel.currentPage == 3)
+        XCTAssertTrue(bookListViewModel.currentItemCount == 40)
+        XCTAssertTrue(bookListViewModel.isRequestCompleted == true)
+    }
 }
