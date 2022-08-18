@@ -21,7 +21,6 @@
 		9B55467F28ADEE70009F993E /* BookFinderAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F972928AB9E930005F870 /* BookFinderAPI.swift */; };
 		9B55468028ADEE72009F993E /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F972F28ABA17C0005F870 /* APIService.swift */; };
 		9B55468128ADEE74009F993E /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F973328AC97040005F870 /* APIError.swift */; };
-		9B55468228ADEE76009F993E /* LoadingActivityIndicatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F973828ACBC890005F870 /* LoadingActivityIndicatorManager.swift */; };
 		9B55468328ADEE7A009F993E /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B623AB628ACDA1600A5F59D /* ImageCacheManager.swift */; };
 		9B55468428ADEE7F009F993E /* BookList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F973128ABA5D50005F870 /* BookList.swift */; };
 		9B55468528ADEE88009F993E /* BookListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8362528AB713900183B9D /* BookListCollectionViewCell.swift */; };
@@ -43,7 +42,6 @@
 		9B6F973228ABA5D50005F870 /* BookList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F973128ABA5D50005F870 /* BookList.swift */; };
 		9B6F973428AC97050005F870 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F973328AC97040005F870 /* APIError.swift */; };
 		9B6F973628AC9DCC0005F870 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F973528AC9DCC0005F870 /* UIViewController+Extension.swift */; };
-		9B6F973928ACBC890005F870 /* LoadingActivityIndicatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F973828ACBC890005F870 /* LoadingActivityIndicatorManager.swift */; };
 		9BD835DF28AB2F4000183B9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD835DE28AB2F4000183B9D /* AppDelegate.swift */; };
 		9BD835E128AB2F4000183B9D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD835E028AB2F4000183B9D /* SceneDelegate.swift */; };
 		9BD835E828AB2F4600183B9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BD835E728AB2F4600183B9D /* Assets.xcassets */; };
@@ -95,7 +93,6 @@
 		9B6F973128ABA5D50005F870 /* BookList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookList.swift; sourceTree = "<group>"; };
 		9B6F973328AC97040005F870 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		9B6F973528AC9DCC0005F870 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
-		9B6F973828ACBC890005F870 /* LoadingActivityIndicatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingActivityIndicatorManager.swift; sourceTree = "<group>"; };
 		9BD835DB28AB2F4000183B9D /* BookFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BD835DE28AB2F4000183B9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9BD835E028AB2F4000183B9D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -192,7 +189,6 @@
 		9B6F973728ACBC6C0005F870 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				9B6F973828ACBC890005F870 /* LoadingActivityIndicatorManager.swift */,
 				9B623AB628ACDA1600A5F59D /* ImageCacheManager.swift */,
 			);
 			path = Manager;
@@ -601,7 +597,6 @@
 				9B6F973228ABA5D50005F870 /* BookList.swift in Sources */,
 				9BD8362128AB69A100183B9D /* UIView+Extension.swift in Sources */,
 				9B6F973028ABA17C0005F870 /* APIService.swift in Sources */,
-				9B6F973928ACBC890005F870 /* LoadingActivityIndicatorManager.swift in Sources */,
 				9B6F973428AC97050005F870 /* APIError.swift in Sources */,
 				9BD8362328AB70DA00183B9D /* UICollectionView+Extension.swift in Sources */,
 				9BD8362628AB713900183B9D /* BookListCollectionViewCell.swift in Sources */,
@@ -643,7 +638,6 @@
 				9B55468028ADEE72009F993E /* APIService.swift in Sources */,
 				9B55468828ADEE92009F993E /* BookDetailViewController.swift in Sources */,
 				9B55468728ADEE8F009F993E /* BookListViewModel.swift in Sources */,
-				9B55468228ADEE76009F993E /* LoadingActivityIndicatorManager.swift in Sources */,
 				9B55467728ADEE54009F993E /* EndPointType.swift in Sources */,
 				9B55468128ADEE74009F993E /* APIError.swift in Sources */,
 				9B55468528ADEE88009F993E /* BookListCollectionViewCell.swift in Sources */,

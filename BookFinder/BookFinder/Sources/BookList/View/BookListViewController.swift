@@ -39,6 +39,11 @@ class BookListViewController: UIViewController {
         $0.backgroundColor = .white
         $0.keyboardDismissMode = .onDrag
     }
+    
+    private lazy var activityIndicator = UIActivityIndicatorView().then {
+        $0.center = view.center
+        $0.style = .large
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +64,7 @@ class BookListViewController: UIViewController {
     }
 
     private func setupSubViews() {
-        view.addSubviews([searchResultCountLabel, bookListCollectionView])
+        view.addSubviews([searchResultCountLabel, bookListCollectionView, activityIndicator])
     }
 
     private func setupConstraints() {
@@ -153,7 +158,7 @@ class BookListViewController: UIViewController {
                 case .failure:
                     self?.hideSearchResultCountLabel()
                     self?.showAlert(title: "📚 검색 결과 불러올 수 없음", message: "검색 결과를 불러올 수 없으므로 재검색 바랍니다.")
-                    LoadingActivityIndicatorManager.hideLoadingActivityIndicator()
+                    self?.hideActivityIndicator()
                 }
             })
             .disposed(by: disposeBag)
@@ -162,9 +167,9 @@ class BookListViewController: UIViewController {
             .subscribe(onNext: { [weak self] isRequesting in
                 self?.isRequesting = isRequesting
                 if isRequesting {
-                    LoadingActivityIndicatorManager.showLoadingActivityIndicator()
+                    self?.showActivityIndicator()
                 } else {
-                    LoadingActivityIndicatorManager.hideLoadingActivityIndicator()
+                    self?.hideActivityIndicator()
                 }
             })
             .disposed(by: disposeBag)
@@ -182,6 +187,18 @@ class BookListViewController: UIViewController {
     private func hideSearchResultCountLabel() {
         searchResultCountLabel.text = nil
         searchResultCountLabel.isHidden = true
+    }
+
+    private func showActivityIndicator() {
+        DispatchQueue.main.async {
+            self.activityIndicator.startAnimating()
+        }
+    }
+    
+    private func hideActivityIndicator() {
+        DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+        }
     }
 }
 

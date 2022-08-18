@@ -57,6 +57,7 @@ class BookDetailViewController: UIViewController {
         $0.textAlignment = .justified
         $0.backgroundColor = .white
         $0.showsVerticalScrollIndicator = false
+        $0.isEditable = false
         $0.addBorder(color: .lightGray, width: 0.5)
         $0.addShadow()
     }
