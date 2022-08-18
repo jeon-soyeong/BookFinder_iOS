@@ -9,6 +9,27 @@
 /* Begin PBXBuildFile section */
 		53C003587C7BD920C5CB021E /* Pods_BookFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45772714FC3B3EE37100FA1D /* Pods_BookFinder.framework */; };
 		7B3C8103113DB757DA404F76 /* Pods_BookFinder_BookFinderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6233B40624B87BF65A860294 /* Pods_BookFinder_BookFinderUITests.framework */; };
+		9B55467628ADEE51009F993E /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F972328AB9C280005F870 /* ViewModelType.swift */; };
+		9B55467728ADEE54009F993E /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F972728AB9E590005F870 /* EndPointType.swift */; };
+		9B55467828ADEE5D009F993E /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8361E28AB698C00183B9D /* UIFont+Extension.swift */; };
+		9B55467928ADEE60009F993E /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8362028AB69A100183B9D /* UIView+Extension.swift */; };
+		9B55467A28ADEE63009F993E /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8362228AB70DA00183B9D /* UICollectionView+Extension.swift */; };
+		9B55467B28ADEE65009F993E /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F972528AB9D200005F870 /* URLRequest+Extension.swift */; };
+		9B55467C28ADEE67009F993E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F973528AC9DCC0005F870 /* UIViewController+Extension.swift */; };
+		9B55467D28ADEE6A009F993E /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B623AB828ACDA8500A5F59D /* UIImageView+Extension.swift */; };
+		9B55467E28ADEE6D009F993E /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F972B28AB9F740005F870 /* APIConstants.swift */; };
+		9B55467F28ADEE70009F993E /* BookFinderAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F972928AB9E930005F870 /* BookFinderAPI.swift */; };
+		9B55468028ADEE72009F993E /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F972F28ABA17C0005F870 /* APIService.swift */; };
+		9B55468128ADEE74009F993E /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F973328AC97040005F870 /* APIError.swift */; };
+		9B55468228ADEE76009F993E /* LoadingActivityIndicatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F973828ACBC890005F870 /* LoadingActivityIndicatorManager.swift */; };
+		9B55468328ADEE7A009F993E /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B623AB628ACDA1600A5F59D /* ImageCacheManager.swift */; };
+		9B55468428ADEE7F009F993E /* BookList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F973128ABA5D50005F870 /* BookList.swift */; };
+		9B55468528ADEE88009F993E /* BookListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8362528AB713900183B9D /* BookListCollectionViewCell.swift */; };
+		9B55468628ADEE8B009F993E /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8361928AB312F00183B9D /* BookListViewController.swift */; };
+		9B55468728ADEE8F009F993E /* BookListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F972028AB9C040005F870 /* BookListViewModel.swift */; };
+		9B55468828ADEE92009F993E /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8361B28AB327900183B9D /* BookDetailViewController.swift */; };
+		9B55468928ADEE96009F993E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD835E028AB2F4000183B9D /* SceneDelegate.swift */; };
+		9B55468A28ADEE99009F993E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD835DE28AB2F4000183B9D /* AppDelegate.swift */; };
 		9B623AB728ACDA1600A5F59D /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B623AB628ACDA1600A5F59D /* ImageCacheManager.swift */; };
 		9B623AB928ACDA8500A5F59D /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B623AB828ACDA8500A5F59D /* UIImageView+Extension.swift */; };
 		9B6F972128AB9C040005F870 /* BookListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F972028AB9C040005F870 /* BookListViewModel.swift */; };
@@ -604,7 +625,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B55468A28ADEE99009F993E /* AppDelegate.swift in Sources */,
+				9B55468428ADEE7F009F993E /* BookList.swift in Sources */,
+				9B55467F28ADEE70009F993E /* BookFinderAPI.swift in Sources */,
+				9B55467C28ADEE67009F993E /* UIViewController+Extension.swift in Sources */,
+				9B55468328ADEE7A009F993E /* ImageCacheManager.swift in Sources */,
+				9B55467A28ADEE63009F993E /* UICollectionView+Extension.swift in Sources */,
+				9B55467B28ADEE65009F993E /* URLRequest+Extension.swift in Sources */,
+				9B55467D28ADEE6A009F993E /* UIImageView+Extension.swift in Sources */,
+				9B55467628ADEE51009F993E /* ViewModelType.swift in Sources */,
+				9B55468928ADEE96009F993E /* SceneDelegate.swift in Sources */,
 				9BD835F628AB2F4600183B9D /* BookFinderTests.swift in Sources */,
+				9B55467E28ADEE6D009F993E /* APIConstants.swift in Sources */,
+				9B55467828ADEE5D009F993E /* UIFont+Extension.swift in Sources */,
+				9B55468628ADEE8B009F993E /* BookListViewController.swift in Sources */,
+				9B55467928ADEE60009F993E /* UIView+Extension.swift in Sources */,
+				9B55468028ADEE72009F993E /* APIService.swift in Sources */,
+				9B55468828ADEE92009F993E /* BookDetailViewController.swift in Sources */,
+				9B55468728ADEE8F009F993E /* BookListViewModel.swift in Sources */,
+				9B55468228ADEE76009F993E /* LoadingActivityIndicatorManager.swift in Sources */,
+				9B55467728ADEE54009F993E /* EndPointType.swift in Sources */,
+				9B55468128ADEE74009F993E /* APIError.swift in Sources */,
+				9B55468528ADEE88009F993E /* BookListCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
