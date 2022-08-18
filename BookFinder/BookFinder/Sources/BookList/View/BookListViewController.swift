@@ -116,7 +116,7 @@ class BookListViewController: UIViewController {
                 if self?.viewModel.isRequestCompleted == false {
                     if let searchText = self?.searchController.searchBar.searchTextField.text,
                        let dataCount = self?.bookItems.count,
-                       item >= dataCount - 3,
+                       item >= dataCount - 5,
                        self?.isRequesting == false {
                         self?.viewModel.action.didSearch.onNext((searchText))
                     }
@@ -131,16 +131,23 @@ class BookListViewController: UIViewController {
             .subscribe(onNext: { [weak self] result in
                 switch result {
                 case .success(let bookList):
-                    self?.bookItems.append(contentsOf: bookList.items)
-                    if self?.searchResultCount == 0 {
-                        self?.searchResultCount = bookList.totalItems
+                    if bookList.totalItems == 0 {
+                        self?.showAlert(title: "📚 검색 결과 없음", message: "검색 결과가 없으므로 다른 키워드로 검색 바랍니다.")
+                    } else {
+                        if let bookItem = bookList.items {
+                            self?.bookItems.append(contentsOf: bookItem)
+                            if self?.searchResultCount == 0 {
+                                self?.searchResultCount = bookList.totalItems
+                            }
+                            self?.searchResultCountLabel.text = "📚 검색 결과: \(self?.searchResultCount ?? 0)개"
+                            self?.bookListCollectionView.reloadData()
+                        }
                     }
-                    self?.searchResultCountLabel.text = "📚 검색 결과: \(self?.searchResultCount ?? 0)개"
-                    self?.bookListCollectionView.reloadData()
                 case .failure:
-                    self?.showAlert(title: "📚 검색 결과 불러올 수 없음", message: "검색 결과를 불러올 수 없으므로 재검색 바랍니다.")
                     self?.searchResultCountLabel.text = nil
                     self?.searchResultCountLabel.isHidden = true
+                    self?.showAlert(title: "📚 검색 결과 불러올 수 없음", message: "검색 결과를 불러올 수 없으므로 재검색 바랍니다.")
+                    LoadingActivityIndicatorManager.hideLoadingActivityIndicator()
                 }
             })
             .disposed(by: disposeBag)

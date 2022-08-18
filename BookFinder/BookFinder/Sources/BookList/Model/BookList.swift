@@ -10,7 +10,7 @@ import Foundation
 // MARK: - BookList
 struct BookList: Codable {
     let totalItems: Int
-    let items: [BookItem]
+    let items: [BookItem]?
 }
 
 // MARK: - Item

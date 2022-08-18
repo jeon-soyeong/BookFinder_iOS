@@ -14,6 +14,8 @@ class BookDetailViewController: UIViewController {
     
     private let bookCoverImageView = UIImageView().then {
         $0.contentMode = .scaleToFill
+        $0.addBorder(color: .lightGray, width: 0.5)
+        $0.addShadow()
     }
 
     private let titleLabel = UILabel().then {
