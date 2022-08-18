@@ -28,7 +28,7 @@ class BookListCollectionViewCell: UICollectionViewCell {
     private let authorLabel = UILabel().then {
         $0.font = UIFont.setFont(type: .medium, size: 12)
         $0.textColor = .darkGray
-        $0.textAlignment = .center
+        $0.numberOfLines = 0
     }
     
     private let publishedDateLabel = UILabel().then {
@@ -73,10 +73,11 @@ class BookListCollectionViewCell: UICollectionViewCell {
         authorLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(18)
             $0.leading.equalTo(titleLabel.snp.leading)
+            $0.width.equalTo(contentsLimitWidth)
         }
         
         publishedDateLabel.snp.makeConstraints {
-            $0.top.equalTo(authorLabel.snp.top).offset(18)
+            $0.top.equalTo(authorLabel.snp.bottom).offset(10)
             $0.leading.equalTo(authorLabel.snp.leading)
         }
         

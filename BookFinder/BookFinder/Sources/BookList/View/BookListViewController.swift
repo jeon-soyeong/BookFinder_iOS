@@ -26,6 +26,7 @@ class BookListViewController: UIViewController {
     
     private let searchResultCountLabel = UILabel().then {
         $0.font = UIFont.setFont(type: .regular, size: 14)
+        $0.textColor = .black
     }
 
     private let bookListCollectionViewFlowLayout = UICollectionViewFlowLayout().then {
@@ -211,13 +212,21 @@ extension BookListViewController: UICollectionViewDelegate {
 // MARK: UICollectionViewDelegateFlowLayout
 extension BookListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {       
-        let cellSize = NSString(string: bookItems[indexPath.row].volumeInfo.title).boundingRect(
+        let titleSize = NSString(string: bookItems[indexPath.row].volumeInfo.title).boundingRect(
                     with: CGSize(width: UIScreen.main.bounds.width - 120, height: CGFloat.greatestFiniteMagnitude),
                     options: .usesLineFragmentOrigin,
                     attributes: [
                             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)
                     ],
                     context: nil)
-        return CGSize(width: collectionView.frame.width, height: cellSize.height + 80)
+        let authorSize = NSString(string: bookItems[indexPath.row].volumeInfo.authors?.first ?? "").boundingRect(
+                    with: CGSize(width: UIScreen.main.bounds.width - 120, height: CGFloat.greatestFiniteMagnitude),
+                    options: .usesLineFragmentOrigin,
+                    attributes: [
+                            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)
+                    ],
+                    context: nil)
+        
+        return CGSize(width: collectionView.frame.width, height: titleSize.height + authorSize.height + 70)
     }
 }

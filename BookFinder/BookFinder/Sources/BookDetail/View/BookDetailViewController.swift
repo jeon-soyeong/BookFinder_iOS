@@ -12,6 +12,15 @@ class BookDetailViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let contentsLimitWidth = UIScreen.main.bounds.width - 48
     
+    private let scrollView = UIScrollView().then {
+        $0.backgroundColor = .white
+        $0.showsVerticalScrollIndicator = false
+    }
+    
+    private let contentView = UIView().then {
+        $0.backgroundColor = .clear
+    }
+    
     private let bookCoverImageView = UIImageView().then {
         $0.contentMode = .scaleToFill
         $0.addBorder(color: .lightGray, width: 0.5)
@@ -27,13 +36,13 @@ class BookDetailViewController: UIViewController {
     private let subTitleLabel = UILabel().then {
         $0.font = UIFont.setFont(type: .bold, size: 18)
         $0.textColor = .black
-        $0.textAlignment = .center
+        $0.numberOfLines = 0
     }
 
     private let authorLabel = UILabel().then {
         $0.font = UIFont.setFont(type: .medium, size: 16)
         $0.textColor = .darkGray
-        $0.textAlignment = .center
+        $0.numberOfLines = 0
     }
 
     private let publishedDateLabel = UILabel().then {
@@ -46,6 +55,7 @@ class BookDetailViewController: UIViewController {
         $0.font = UIFont.setFont(type: .medium, size: 16)
         $0.textColor = .black
         $0.textAlignment = .justified
+        $0.backgroundColor = .white
         $0.showsVerticalScrollIndicator = false
         $0.addBorder(color: .lightGray, width: 0.5)
         $0.addShadow()
@@ -65,19 +75,32 @@ class BookDetailViewController: UIViewController {
 
     private func setupView() {
         view.backgroundColor = .white
-
+        setNavigationBarTransparency()
         setupSubViews()
         setupConstraints()
     }
 
     private func setupSubViews() {
-        view.addSubviews([bookCoverImageView, titleLabel, subTitleLabel, authorLabel, publishedDateLabel, descriptionTextView])
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubviews([bookCoverImageView, titleLabel, subTitleLabel, authorLabel, publishedDateLabel, descriptionTextView])
         setupConstraints()
     }
     
     private func setupConstraints() {
+        scrollView.snp.makeConstraints {
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.width.equalToSuperview()
+            $0.centerX.bottom.equalToSuperview()
+        }
+        
         bookCoverImageView.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(24)
+            $0.top.equalToSuperview().offset(24)
             $0.leading.equalToSuperview().inset(24)
             $0.width.equalTo(100)
             $0.height.equalTo(150)
@@ -92,11 +115,13 @@ class BookDetailViewController: UIViewController {
         subTitleLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(12)
             $0.leading.equalTo(bookCoverImageView.snp.leading)
+            $0.width.equalTo(contentsLimitWidth)
         }
 
         authorLabel.snp.makeConstraints {
             $0.top.equalTo(subTitleLabel.snp.bottom).offset(14)
             $0.leading.equalTo(bookCoverImageView.snp.leading)
+            $0.width.equalTo(contentsLimitWidth)
         }
 
         publishedDateLabel.snp.makeConstraints {
@@ -107,9 +132,9 @@ class BookDetailViewController: UIViewController {
         descriptionTextView.snp.makeConstraints {
             $0.top.equalTo(publishedDateLabel.snp.bottom).offset(12)
             $0.leading.equalTo(bookCoverImageView.snp.leading)
-            $0.centerX.equalToSuperview()
             $0.width.equalToSuperview().inset(24)
-            $0.height.equalTo(200)
+            $0.height.equalTo(300)
+            $0.bottom.equalToSuperview().inset(60)
         }
     }
 

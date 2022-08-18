@@ -15,4 +15,12 @@ extension UIViewController {
         alert.addAction(okAction)
         present(alert, animated: true)
     }
+    
+    func setNavigationBarTransparency() {
+        let navigationBar = self.navigationController?.navigationBar
+        navigationBar?.backgroundColor = UIColor.clear
+            
+        navigationBar?.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationBar?.shadowImage = UIImage()
+    }
 }
