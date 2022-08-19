@@ -39,10 +39,11 @@ class BookListViewController: UIViewController {
         $0.backgroundColor = .white
         $0.keyboardDismissMode = .onDrag
     }
-
-    private lazy var activityIndicator = UIActivityIndicatorView().then {
+    
+    private lazy var loadingIndicatorView = LoadingIndicatorView().then {
+        $0.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         $0.center = view.center
-        $0.style = .large
+        $0.isHidden = true
     }
 
     override func viewDidLoad() {
@@ -64,7 +65,7 @@ class BookListViewController: UIViewController {
     }
 
     private func setupSubViews() {
-        view.addSubviews([searchResultCountLabel, bookListCollectionView, activityIndicator])
+        view.addSubviews([searchResultCountLabel, bookListCollectionView, loadingIndicatorView])
     }
 
     private func setupConstraints() {
@@ -190,13 +191,14 @@ class BookListViewController: UIViewController {
 
     private func showActivityIndicator() {
         DispatchQueue.main.async {
-            self.activityIndicator.startAnimating()
+            self.loadingIndicatorView.isHidden = false
+            self.loadingIndicatorView.startAnimation()
         }
     }
 
     private func hideActivityIndicator() {
         DispatchQueue.main.async {
-            self.activityIndicator.stopAnimating()
+            self.loadingIndicatorView.isHidden = true
         }
     }
 }

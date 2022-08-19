@@ -8,6 +8,6 @@
 import Foundation
 import UIKit
 
-extension Notification.Name {
+public extension Notification.Name {
     static let memoryWarning = UIApplication.didReceiveMemoryWarningNotification
 }

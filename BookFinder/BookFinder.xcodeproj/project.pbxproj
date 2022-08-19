@@ -38,6 +38,8 @@
 		9B6C7A4728AEBAA20058F022 /* CachedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C7A4628AEBAA20058F022 /* CachedImage.swift */; };
 		9B6C7A4828AECA4B0058F022 /* CachedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C7A4628AEBAA20058F022 /* CachedImage.swift */; };
 		9B6C7A4A28AED2540058F022 /* NotificationName+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C7A4928AED2540058F022 /* NotificationName+Extension.swift */; };
+		9B6C7A4D28AED7E40058F022 /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C7A4C28AED7E40058F022 /* LoadingIndicatorView.swift */; };
+		9B6C7A4E28AED7E90058F022 /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C7A4C28AED7E40058F022 /* LoadingIndicatorView.swift */; };
 		9B6F972128AB9C040005F870 /* BookListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F972028AB9C040005F870 /* BookListViewModel.swift */; };
 		9B6F972428AB9C280005F870 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F972328AB9C280005F870 /* ViewModelType.swift */; };
 		9B6F972628AB9D200005F870 /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F972528AB9D200005F870 /* URLRequest+Extension.swift */; };
@@ -95,6 +97,7 @@
 		9B6C7A4328AE6A390058F022 /* BookSearchResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BookSearchResult.json; sourceTree = "<group>"; };
 		9B6C7A4628AEBAA20058F022 /* CachedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImage.swift; sourceTree = "<group>"; };
 		9B6C7A4928AED2540058F022 /* NotificationName+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+Extension.swift"; sourceTree = "<group>"; };
+		9B6C7A4C28AED7E40058F022 /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
 		9B6F972028AB9C040005F870 /* BookListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListViewModel.swift; sourceTree = "<group>"; };
 		9B6F972328AB9C280005F870 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		9B6F972528AB9D200005F870 /* URLRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
@@ -199,6 +202,14 @@
 			path = ImageCache;
 			sourceTree = "<group>";
 		};
+		9B6C7A4B28AED7B80058F022 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				9B6C7A4C28AED7E40058F022 /* LoadingIndicatorView.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
 		9B6F971F28AB9BCC0005F870 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,9 +293,9 @@
 			isa = PBXGroup;
 			children = (
 				9BD835EC28AB2F4600183B9D /* Info.plist */,
+				9B6F972D28AB9FC70005F870 /* Key.plist */,
 				9BD835DE28AB2F4000183B9D /* AppDelegate.swift */,
 				9BD835E028AB2F4000183B9D /* SceneDelegate.swift */,
-				9B6F972D28AB9FC70005F870 /* Key.plist */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -338,6 +349,7 @@
 		9BD8361528AB30DE00183B9D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9B6C7A4B28AED7B80058F022 /* CustomView */,
 				9BD8362428AB712000183B9D /* Cell */,
 				9BD8361928AB312F00183B9D /* BookListViewController.swift */,
 			);
@@ -646,6 +658,7 @@
 				9BD8361F28AB698C00183B9D /* UIFont+Extension.swift in Sources */,
 				9B6F972C28AB9F740005F870 /* APIConstants.swift in Sources */,
 				9B6F972828AB9E590005F870 /* EndPointType.swift in Sources */,
+				9B6C7A4D28AED7E40058F022 /* LoadingIndicatorView.swift in Sources */,
 				9B6F972428AB9C280005F870 /* ViewModelType.swift in Sources */,
 				9B6C7A4728AEBAA20058F022 /* CachedImage.swift in Sources */,
 				9B6F972628AB9D200005F870 /* URLRequest+Extension.swift in Sources */,
@@ -671,6 +684,7 @@
 				9BD835F628AB2F4600183B9D /* BookFinderTests.swift in Sources */,
 				9B6C7A4828AECA4B0058F022 /* CachedImage.swift in Sources */,
 				9B55467E28ADEE6D009F993E /* APIConstants.swift in Sources */,
+				9B6C7A4E28AED7E90058F022 /* LoadingIndicatorView.swift in Sources */,
 				9B55467828ADEE5D009F993E /* UIFont+Extension.swift in Sources */,
 				9B55468628ADEE8B009F993E /* BookListViewController.swift in Sources */,
 				9B6C7A3C28AE44220058F022 /* MockURLSession.swift in Sources */,
@@ -838,6 +852,7 @@
 				DEVELOPMENT_TEAM = 577SG3C42S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookFinder/SupportingFiles/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BookFinder;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -867,6 +882,7 @@
 				DEVELOPMENT_TEAM = 577SG3C42S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookFinder/SupportingFiles/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BookFinder;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
