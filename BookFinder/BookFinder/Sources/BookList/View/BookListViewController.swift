@@ -15,7 +15,6 @@ class BookListViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel = BookListViewModel()
     private var bookItems: [BookItem] = []
-    private var searchResultCount = 0
     private var isRequesting = false
 
     private let searchBar = UISearchBar().then {
@@ -148,10 +147,9 @@ class BookListViewController: UIViewController {
                     } else {
                         if let bookItem = bookList.items {
                             self?.bookItems.append(contentsOf: bookItem)
-                            if self?.searchResultCount == 0 {
-                                self?.searchResultCount = bookList.totalItems
+                            if let totalItemsCount = self?.viewModel.totalItemsCount {
+                                self?.searchResultCountLabel.text = "📚 검색 결과: \(totalItemsCount)개"
                             }
-                            self?.searchResultCountLabel.text = "📚 검색 결과: \(self?.searchResultCount ?? 0)개"
                             self?.bookListCollectionView.reloadData()
                         }
                     }
@@ -178,7 +176,6 @@ class BookListViewController: UIViewController {
     private func initialize() {
         viewModel.initialize()
         bookItems = []
-        searchResultCount = 0
         searchResultCountLabel.isHidden = false
         bookListCollectionView.contentOffset = .zero
         bookListCollectionView.reloadData()
