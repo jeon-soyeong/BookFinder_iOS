@@ -11,12 +11,14 @@ import UIKit
 import RxSwift
 
 extension UIImageView {
-    func setImage(with url: String, disposeBag: DisposeBag) {
+    func setImage(with url: String, disposeBag: DisposeBag) -> URLSessionDataTask? {
         let imageCacheManager = ImageCacheManager.shared
+        var dataTask: URLSessionDataTask?
         
         guard let cachedData = imageCacheManager.read(with: url) else {
+            self.image = UIImage()
             if let imageUrl = URL(string: url) {
-                let task = URLSession.shared.dataTask(with: imageUrl) { [weak self] (data, response, error) in
+                dataTask = URLSession.shared.dataTask(with: imageUrl) { [weak self] (data, response, error) in
                     guard let data = data else {
                         return
                     }
@@ -27,10 +29,11 @@ extension UIImageView {
                         }
                     }
                 }
-                task.resume()
+                dataTask?.resume()
             }
-            return
+            return dataTask
         }
         self.image = UIImage(data: cachedData.imageData)
+        return dataTask
     }
 }

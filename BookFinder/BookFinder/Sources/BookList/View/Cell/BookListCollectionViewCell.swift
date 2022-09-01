@@ -12,6 +12,7 @@ import RxSwift
 class BookListCollectionViewCell: UICollectionViewCell {
     private let disposeBag = DisposeBag()
     private let contentsLimitWidth = UIScreen.main.bounds.width - 120
+    private var dataTask: URLSessionDataTask?
     
     private let bookCoverImageView = UIImageView().then {
         $0.contentMode = .scaleToFill
@@ -49,6 +50,13 @@ class BookListCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupView()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bookCoverImageView.image = nil
+        dataTask?.cancel()
+        dataTask = nil
     }
 
     private func setupView() {
@@ -90,7 +98,7 @@ class BookListCollectionViewCell: UICollectionViewCell {
 
     func setupUI(data: BookItem) {
         if let thumbnailImage = data.volumeInfo.imageLinks?.thumbnail {
-            bookCoverImageView.setImage(with: thumbnailImage, disposeBag: disposeBag)
+            dataTask = bookCoverImageView.setImage(with: thumbnailImage, disposeBag: disposeBag)
         } else {
             bookCoverImageView.image = UIImage(named: "defaultImage")
         }

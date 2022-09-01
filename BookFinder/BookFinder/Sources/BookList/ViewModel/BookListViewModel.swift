@@ -13,7 +13,6 @@ import RxRelay
 class BookListViewModel: ViewModelType {
     private let disposeBag = DisposeBag()
     private let apiService = APIService()
-    private(set) var isRequesting = false
     private(set) var currentPage = 1
     private(set) var startIndex = 0
     private(set) var perPage = 20
@@ -49,15 +48,16 @@ class BookListViewModel: ViewModelType {
     private func configure() {
         action.didSearch
             .subscribe(onNext: { [weak self] in
-                if self?.isRequestCompleted == false, self?.isRequesting == false {
-                    self?.requestBookListData(query: $0)
+                guard let self = self else { return }
+                let isRequesting = self.state.isRequesting.value
+                if self.isRequestCompleted == false, isRequesting == false {
+                    self.requestBookListData(query: $0)
                 }
             })
             .disposed(by: disposeBag)
     }
 
     private func requestBookListData(query: String) {
-        isRequesting = true
         self.state.isRequesting.accept(true)
         startIndex = (currentPage - 1) * perPage
         
@@ -70,7 +70,6 @@ class BookListViewModel: ViewModelType {
                     self?.totalItemsCount = bookList.totalItems
                 }
                 self?.process(bookItems: bookList.items)
-                self?.isRequesting = false
                 self?.state.isRequesting.accept(false)
             }, onFailure: {
                 self.state.searchResult.onNext(.failure($0))

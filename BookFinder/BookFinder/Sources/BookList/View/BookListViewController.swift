@@ -200,8 +200,10 @@ extension BookListViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookListCollectionViewCell", for: indexPath)
-        print("dequeueReusableCell")
         let bookListCollectionViewCell = cell as? BookListCollectionViewCell
+        guard indexPath.item < viewModel.bookItems.count else {
+            return cell
+        }
         bookListCollectionViewCell?.setupUI(data: viewModel.bookItems[indexPath.item])
 
         return cell
