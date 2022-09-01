@@ -14,7 +14,6 @@ import RxCocoa
 class BookListViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel = BookListViewModel()
-    private var isRequesting = false
 
     private let searchBar = UISearchBar().then {
         $0.searchBarStyle = .minimal
@@ -122,14 +121,10 @@ class BookListViewController: UIViewController {
             .compactMap(\.last?.item)
             .withUnretained(self)
             .bind { [weak self] vc, item in
-                if self?.viewModel.isRequestCompleted == false {
-                    if let searchText = self?.searchBar.searchTextField.text,
-                       let dataCount = self?.bookItems.count,
-                       let dataCount = self?.viewModel.bookItems.count,
-                       item >= dataCount - 3,
-                       self?.isRequesting == false {
-                        self?.viewModel.action.didSearch.onNext((searchText))
-                    }
+                if let searchText = self?.searchBar.searchTextField.text,
+                   let dataCount = self?.viewModel.bookItems.count,
+                   item >= dataCount - 3 {
+                    self?.viewModel.action.didSearch.onNext((searchText))
                 }
             }
             .disposed(by: self.disposeBag)
@@ -162,7 +157,6 @@ class BookListViewController: UIViewController {
 
         viewModel.state.isRequesting
             .subscribe(onNext: { [weak self] isRequesting in
-                self?.isRequesting = isRequesting
                 if isRequesting {
                     self?.showActivityIndicator()
                 } else {
