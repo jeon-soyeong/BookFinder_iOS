@@ -11,7 +11,7 @@ import RxSwift
 import RxRelay
 
 class BookListViewModel: ViewModelType {
-    var disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     var totalItemsCount = 0
     var bookItems: [BookItem] = []
     private let apiService = APIService()
