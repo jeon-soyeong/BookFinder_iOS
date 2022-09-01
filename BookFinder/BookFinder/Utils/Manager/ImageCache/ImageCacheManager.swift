@@ -15,7 +15,7 @@ class ImageCacheManager: NSObject {
     
     static let shared = ImageCacheManager()
     private let cache = NSCache<NSString, CachedImage>()
-    let maximumMemoryBytes = Int(ProcessInfo.processInfo.physicalMemory) / 4
+    private let maximumMemoryBytes = Int(ProcessInfo.processInfo.physicalMemory) / 4
     
     override init() {
         super.init()
