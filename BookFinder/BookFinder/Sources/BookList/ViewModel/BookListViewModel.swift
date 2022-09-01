@@ -13,6 +13,7 @@ import RxRelay
 class BookListViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     var totalItemsCount = 0
+    var bookItems: [BookItem] = []
     private let apiService = APIService()
     private(set) var currentPage = 1
     private(set) var startIndex = 0
@@ -25,7 +26,7 @@ class BookListViewModel: ViewModelType {
     }
 
     struct State {
-        let bookListData = PublishSubject<Result<BookList, Error>>()
+        let searchResult = PublishSubject<Result<Void, Error>>()
         let isRequesting = BehaviorRelay<Bool>(value: false)
     }
 
@@ -37,6 +38,7 @@ class BookListViewModel: ViewModelType {
     }
 
     func initialize() {
+        bookItems = []
         currentPage = 1
         isRequestCompleted = false
         currentItemCount = 0
@@ -63,18 +65,23 @@ class BookListViewModel: ViewModelType {
                 if self?.totalItemsCount == 0 {
                     self?.totalItemsCount = bookList.totalItems
                 }
-                self?.process(bookList: bookList)
+                self?.process(bookItems: bookList.items)
                 self?.state.isRequesting.accept(false)
             }, onFailure: {
-                self.state.bookListData.onNext(.failure($0))
+                self.state.searchResult.onNext(.failure($0))
             })
             .disposed(by: disposeBag)
     }
 
-    func process(bookList: BookList) {
+    func process(bookItems: [BookItem]?) {
         currentItemCount += perPage
         isRequestCompleted = totalItemsCount <= currentItemCount
         currentPage += 1
-        state.bookListData.onNext(.success(bookList))
+        if let bookItems = bookItems {
+            for bookItem in bookItems {
+                self.bookItems.append(bookItem)
+            }
+        }
+        state.searchResult.onNext(.success(()))
     }
 }
