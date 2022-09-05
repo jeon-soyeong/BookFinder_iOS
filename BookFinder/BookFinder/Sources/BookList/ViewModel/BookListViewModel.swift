@@ -18,8 +18,8 @@ class BookListViewModel: ViewModelType {
     private(set) var perPage = 20
     private(set) var currentItemCount = 0
     private(set) var isRequestCompleted = false
-    private(set) var totalItemsCount = 0
     private(set) var bookItems: [BookItem] = []
+    var totalItemsCount = 0
 
     struct Action {
         let didSearch = PublishSubject<String>()

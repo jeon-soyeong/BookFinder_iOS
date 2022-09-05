@@ -9,11 +9,7 @@ import Foundation
 
 class MockURLSession: URLSession {
     var mockResponse: MockResponse?
-
-    init() {
-        super.init(configuration: .default)
-    }
-
+    
     override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         let mock = MockURLSessionDataTask()
         mock.mockResponse = mockResponse

@@ -54,9 +54,9 @@ class BookFinderTests: XCTestCase {
         apiService.request(with: request)
             .subscribe(onSuccess: { (bookList: BookList) in
                 XCTAssertNotNil(bookList)
-                XCTAssertEqual(bookList.items?.first?.volumeInfo.title, "관계의 온도")
-                XCTAssertEqual(bookList.items?.first?.volumeInfo.authors?.first, "이금이")
-                XCTAssertNotEqual(bookList.items?.first?.volumeInfo.authors?.first, "이금희희")
+                XCTAssertEqual(bookList.items?.first?.volumeInfo.title, "사랑의 온도")
+                XCTAssertEqual(bookList.items?.first?.volumeInfo.authors?.first, "고경표")
+                XCTAssertNotEqual(bookList.items?.first?.volumeInfo.authors?.first, "고경표표")
                 
                 expectation.fulfill()
             })
@@ -70,12 +70,12 @@ class BookFinderTests: XCTestCase {
 
         bookListViewModel.totalItemsCount = 40
 
-        bookListViewModel.process(bookList: bookList)
+        bookListViewModel.process(bookItems: bookList.items)
         XCTAssertTrue(bookListViewModel.currentPage == 2)
         XCTAssertTrue(bookListViewModel.currentItemCount == 20)
         XCTAssertFalse(bookListViewModel.isRequestCompleted == true)
 
-        bookListViewModel.process(bookList: bookList)
+        bookListViewModel.process(bookItems: bookList.items)
         XCTAssertTrue(bookListViewModel.currentPage == 3)
         XCTAssertTrue(bookListViewModel.currentItemCount == 40)
         XCTAssertTrue(bookListViewModel.isRequestCompleted == true)
