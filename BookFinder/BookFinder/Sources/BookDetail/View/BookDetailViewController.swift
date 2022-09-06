@@ -155,7 +155,7 @@ class BookDetailViewController: UIViewController {
 
     func setupUI(data: BookItem) {
         if let thumbnailImage = data.volumeInfo.imageLinks?.thumbnail {
-            bookCoverImageView.setImage(with: thumbnailImage, disposeBag: disposeBag)
+            bookCoverImageView.setImage(with: thumbnailImage)
         } else {
             bookCoverImageView.image = UIImage(named: "defaultImage")
         }

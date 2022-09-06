@@ -11,7 +11,7 @@ import UIKit
 import RxSwift
 
 extension UIImageView {
-    func setImage(with url: String, disposeBag: DisposeBag) -> URLSessionDataTask? {
+    func setImage(with url: String) -> URLSessionDataTask? {
         let imageCacheManager = ImageCacheManager.shared
         var dataTask: URLSessionDataTask?
         

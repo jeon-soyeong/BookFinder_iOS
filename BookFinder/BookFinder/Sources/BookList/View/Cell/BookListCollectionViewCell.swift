@@ -98,7 +98,7 @@ class BookListCollectionViewCell: UICollectionViewCell {
 
     func setupUI(data: BookItem) {
         if let thumbnailImage = data.volumeInfo.imageLinks?.thumbnail {
-            dataTask = bookCoverImageView.setImage(with: thumbnailImage, disposeBag: disposeBag)
+            dataTask = bookCoverImageView.setImage(with: thumbnailImage)
         } else {
             bookCoverImageView.image = UIImage(named: "defaultImage")
         }
