@@ -119,8 +119,7 @@ class BookListViewController: UIViewController {
 
         bookListCollectionView.rx.prefetchItems
             .compactMap(\.last?.item)
-            .withUnretained(self)
-            .bind { [weak self] vc, item in
+            .bind { [weak self] item in
                 if let searchText = self?.searchBar.searchTextField.text,
                    let dataCount = self?.viewModel.bookItems.count,
                    item >= dataCount - 3 {
@@ -156,6 +155,7 @@ class BookListViewController: UIViewController {
             .disposed(by: disposeBag)
 
         viewModel.state.isRequesting
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] isRequesting in
                 if isRequesting {
                     self?.showActivityIndicator()
