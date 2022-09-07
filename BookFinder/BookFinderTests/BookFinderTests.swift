@@ -11,7 +11,6 @@ import XCTest
 import RxSwift
 
 class BookFinderTests: XCTestCase {
-    let apiService = APIService()
     let disposeBag = DisposeBag()
     let bookListViewModel = BookListViewModel()
     var responseData: Data?
@@ -26,9 +25,8 @@ class BookFinderTests: XCTestCase {
     }
     
     func test_givenMockURLSession_whenRequestGetBookItem_ThenSuccess() throws {
-        let mockURLSession = MockURLSession()
-        mockURLSession.mockResponse = MockResponse(url: "https://www.googleapis.com/books/v1/volumes", responseData: responseData, error: nil, statusCode: 200)
-        apiService.session = mockURLSession
+        let mockURLSession = MockURLSession(mockResponse: MockResponse(url: "https://www.googleapis.com/books/v1/volumes", responseData: responseData, error: nil, statusCode: 200))
+        let apiService = APIService(session: mockURLSession)
 
         guard let request = URLRequest(type: BookFinderAPI.getBookItem(q: "성장", startIndex: 0, maxResults: 20)) else {
             XCTFail()
@@ -47,6 +45,7 @@ class BookFinderTests: XCTestCase {
     func test_givenAPIService_whenRequestGetBookItem_ThenSuccess() throws {
         let expectation = XCTestExpectation(description: "GetBookItem API Test")
 
+        let apiService = APIService()
         guard let request = URLRequest(type: BookFinderAPI.getBookItem(q: "온도", startIndex: 0, maxResults: 20)) else {
             XCTFail()
             return
@@ -54,8 +53,8 @@ class BookFinderTests: XCTestCase {
         apiService.request(with: request)
             .subscribe(onSuccess: { (bookList: BookList) in
                 XCTAssertNotNil(bookList)
-                XCTAssertEqual(bookList.items?.first?.volumeInfo.title, "사랑의 온도")
-                XCTAssertEqual(bookList.items?.first?.volumeInfo.authors?.first, "고경표")
+                XCTAssertEqual(bookList.items?.first?.volumeInfo.title, "언어의 온도(170만부 기념 에디션)")
+                XCTAssertEqual(bookList.items?.first?.volumeInfo.authors?.first, "이기주")
                 XCTAssertNotEqual(bookList.items?.first?.volumeInfo.authors?.first, "고경표표")
                 
                 expectation.fulfill()

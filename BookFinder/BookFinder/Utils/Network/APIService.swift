@@ -10,7 +10,11 @@ import Foundation
 import RxSwift
 
 class APIService {
-    var session = URLSession.shared
+    private var session: URLSessionProtocol
+    
+    init(session: URLSessionProtocol = URLSession.shared) {
+        self.session = session
+    }
     
     func request<T: Codable>(with url: URLRequest) -> Single<T> {
         return Single<T>.create { [weak self] single in

@@ -6,15 +6,19 @@
 //
 
 import Foundation
+import BookFinder
 
-class MockURLSession: URLSession {
+class MockURLSession {
     var mockResponse: MockResponse?
     
-    override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        let mock = MockURLSessionDataTask()
-        mock.mockResponse = mockResponse
+    init(mockResponse: MockResponse) {
+        self.mockResponse = mockResponse
+    }
+}
 
-        mock.completionHandler = completionHandler
-        return mock
+extension MockURLSession: URLSessionProtocol {
+    func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTaskProtocol {
+        let mockURLSessionDataTask = MockURLSessionDataTask(completionHandler: completionHandler, mockResponse: mockResponse)
+        return mockURLSessionDataTask
     }
 }

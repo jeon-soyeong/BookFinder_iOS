@@ -6,12 +6,20 @@
 //
 
 import Foundation
+import BookFinder
 
-class MockURLSessionDataTask: URLSessionDataTask {
+class MockURLSessionDataTask {
     var completionHandler: ((Data?, URLResponse?, Error?) -> Void)?
     var mockResponse: MockResponse?
+    
+    init(completionHandler: ((Data?, URLResponse?, Error?) -> Void)?, mockResponse: MockResponse?) {
+        self.completionHandler = completionHandler
+        self.mockResponse = mockResponse
+    }
+}
 
-    override func resume() {
+extension MockURLSessionDataTask: URLSessionDataTaskProtocol {
+    func resume() {
         let response: HTTPURLResponse?
         
         if let url = mockResponse?.url,
@@ -21,7 +29,7 @@ class MockURLSessionDataTask: URLSessionDataTask {
         }
     }
 
-    override func cancel() {
+    func cancel() {
         completionHandler?(nil, nil, NSError(domain: "", code: NSURLErrorCancelled, userInfo: nil))
     }
 }
