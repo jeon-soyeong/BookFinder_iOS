@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class BookDetailViewController: UIViewController {
+final class BookDetailViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let contentsLimitWidth = UIScreen.main.bounds.width - 48
     private let viewModel: BookDetailViewModel

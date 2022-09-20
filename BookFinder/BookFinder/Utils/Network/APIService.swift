@@ -9,7 +9,7 @@ import Foundation
 
 import RxSwift
 
-class APIService {
+final class APIService {
     private var session: URLSessionProtocol
     
     init(session: URLSessionProtocol = URLSession.shared) {

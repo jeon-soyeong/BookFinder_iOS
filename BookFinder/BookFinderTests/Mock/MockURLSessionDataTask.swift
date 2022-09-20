@@ -8,7 +8,7 @@
 import Foundation
 import BookFinder
 
-class MockURLSessionDataTask {
+final class MockURLSessionDataTask {
     var completionHandler: ((Data?, URLResponse?, Error?) -> Void)?
     var mockResponse: MockResponse?
     

@@ -11,7 +11,7 @@ import Then
 import RxSwift
 import RxCocoa
 
-class BookListViewController: UIViewController {
+final class BookListViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel: BookListViewModel
 

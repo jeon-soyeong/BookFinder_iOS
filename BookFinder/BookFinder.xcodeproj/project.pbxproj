@@ -356,8 +356,8 @@
 		9BD8361728AB30EA00183B9D /* BookDetail */ = {
 			isa = PBXGroup;
 			children = (
-				9B623C9C28D8B11C002D7D4F /* ViewModel */,
 				9BD8361828AB30F100183B9D /* View */,
+				9B623C9C28D8B11C002D7D4F /* ViewModel */,
 			);
 			path = BookDetail;
 			sourceTree = "<group>";

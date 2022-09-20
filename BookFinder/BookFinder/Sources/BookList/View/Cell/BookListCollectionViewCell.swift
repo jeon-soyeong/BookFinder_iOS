@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import Acorn
 
-class BookListCollectionViewCell: UICollectionViewCell {
+final class BookListCollectionViewCell: UICollectionViewCell {
     private let disposeBag = DisposeBag()
     private let contentsLimitWidth = UIScreen.main.bounds.width - 120
     private var dataTask: URLSessionDataTask?

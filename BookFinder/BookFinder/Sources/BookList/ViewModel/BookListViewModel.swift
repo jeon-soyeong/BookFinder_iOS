@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxRelay
 
-class BookListViewModel: ViewModelType {
+final class BookListViewModel: ViewModelType {
     private let disposeBag = DisposeBag()
     private let apiService = APIService()
     private(set) var currentPage = 1

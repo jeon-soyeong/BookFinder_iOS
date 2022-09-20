@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BookDetailViewModel {
+final class BookDetailViewModel {
     private(set) var bookItem: BookItem
     
     init(bookItem: BookItem) {
