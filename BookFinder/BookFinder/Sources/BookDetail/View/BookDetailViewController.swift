@@ -11,6 +11,7 @@ import RxSwift
 class BookDetailViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let contentsLimitWidth = UIScreen.main.bounds.width - 48
+    private let viewModel: BookDetailViewModel
 
     private let scrollView = UIScrollView().then {
         $0.backgroundColor = .white
@@ -66,10 +67,20 @@ class BookDetailViewController: UIViewController {
         $0.image = UIImage(named: "back")
     }
 
+    init(viewModel: BookDetailViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
+        setupUI(data: viewModel.bookItem)
         setupLeftBarBackButton()
         bindAction()
     }
