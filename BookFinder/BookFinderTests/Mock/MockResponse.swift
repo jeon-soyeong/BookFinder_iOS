@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MockResponse {
+final class MockResponse {
     var url: String
     var responseData: Data?
     var error: Error?

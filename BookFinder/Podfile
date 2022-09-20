@@ -10,7 +10,8 @@ target 'BookFinder' do
     pod 'RxCocoa'
     pod 'SnapKit', '~> 5.6.0'
     pod 'Then'
-     
+    pod 'Acorn'
+
   target 'BookFinderTests' do
     inherit! :search_paths
     # Pods for testing

@@ -1,4 +1,5 @@
 PODS:
+  - Acorn (1.0.2)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
@@ -9,6 +10,7 @@ PODS:
   - Then (3.0.0)
 
 DEPENDENCIES:
+  - Acorn
   - RxCocoa
   - RxSwift (= 6.5.0)
   - SnapKit (~> 5.6.0)
@@ -16,6 +18,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Acorn
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -23,12 +26,13 @@ SPEC REPOS:
     - Then
 
 SPEC CHECKSUMS:
+  Acorn: f42df030207761742ee60bf54b2c40c9e6e6d348
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: 35aa50769f1edb4a41a012d65cbe915a92ad6f29
+PODFILE CHECKSUM: 525c1d91a859691cd7aedbc7fb1d653950912868
 
 COCOAPODS: 1.11.3

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoadingIndicatorView: UIView {
+final class LoadingIndicatorView: UIView {
     private lazy var backgroundLayer = CAShapeLayer().then {
         $0.lineWidth = 3
         $0.strokeColor = UIColor.systemGray3.cgColor

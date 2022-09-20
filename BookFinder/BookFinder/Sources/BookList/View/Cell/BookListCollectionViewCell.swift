@@ -8,8 +8,9 @@
 import UIKit
 
 import RxSwift
+import Acorn
 
-class BookListCollectionViewCell: UICollectionViewCell {
+final class BookListCollectionViewCell: UICollectionViewCell {
     private let disposeBag = DisposeBag()
     private let contentsLimitWidth = UIScreen.main.bounds.width - 120
     private var dataTask: URLSessionDataTask?
@@ -54,6 +55,7 @@ class BookListCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
         bookCoverImageView.image = nil
         dataTask?.cancel()
         dataTask = nil
@@ -97,11 +99,9 @@ class BookListCollectionViewCell: UICollectionViewCell {
     }
 
     func setupUI(data: BookItem) {
-        if let thumbnailImage = data.volumeInfo.imageLinks?.thumbnail {
-            dataTask = bookCoverImageView.setImage(with: thumbnailImage)
-        } else {
-            bookCoverImageView.image = UIImage(named: "defaultImage")
-        }
+        let thumbnailImage = data.volumeInfo.imageLinks?.thumbnail
+        dataTask = bookCoverImageView.setImage(with: thumbnailImage, placeholder: UIImage(named: "defaultImage"))
+        
         titleLabel.text = data.volumeInfo.title
         authorLabel.text = data.volumeInfo.authors?.first
         publishedDateLabel.text = data.volumeInfo.publishedDate

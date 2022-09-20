@@ -11,13 +11,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        ImageCacheManager.shared.configureCacheMemory()
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         let navigationController = UINavigationController()
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
-        navigationController.pushViewController(BookListViewController(), animated: false)
+        
+        let bookListViewModel = BookListViewModel()
+        navigationController.pushViewController(BookListViewController(viewModel: bookListViewModel), animated: false)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

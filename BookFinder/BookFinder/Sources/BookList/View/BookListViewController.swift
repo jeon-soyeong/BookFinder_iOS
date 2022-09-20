@@ -11,9 +11,9 @@ import Then
 import RxSwift
 import RxCocoa
 
-class BookListViewController: UIViewController {
+final class BookListViewController: UIViewController {
     private let disposeBag = DisposeBag()
-    private let viewModel = BookListViewModel()
+    private let viewModel: BookListViewModel
 
     private let searchBar = UISearchBar().then {
         $0.searchBarStyle = .minimal
@@ -43,6 +43,15 @@ class BookListViewController: UIViewController {
         $0.isHidden = true
     }
 
+    init(viewModel: BookListViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -199,12 +208,11 @@ extension BookListViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookListCollectionViewCell", for: indexPath)
-        let bookListCollectionViewCell = cell as? BookListCollectionViewCell
-        guard indexPath.item < viewModel.bookItems.count else {
-            return cell
+        guard let cell = collectionView.dequeueReusableCell(cellType: BookListCollectionViewCell.self, indexPath: indexPath),
+              indexPath.item < viewModel.bookItems.count else {
+            return UICollectionViewCell()
         }
-        bookListCollectionViewCell?.setupUI(data: viewModel.bookItems[indexPath.item])
+        cell.setupUI(data: viewModel.bookItems[indexPath.item])
 
         return cell
     }
@@ -213,8 +221,8 @@ extension BookListViewController: UICollectionViewDataSource {
 // MARK: UICollectionViewDelegate
 extension BookListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let bookDetailViewController = BookDetailViewController()
-        bookDetailViewController.setupUI(data: viewModel.bookItems[indexPath.item])
+        let bookDetailViewModel = BookDetailViewModel(bookItem: viewModel.bookItems[indexPath.item])
+        let bookDetailViewController = BookDetailViewController(viewModel: bookDetailViewModel)
         navigationController?.pushViewController(bookDetailViewController, animated: false)
     }
 }
@@ -222,14 +230,14 @@ extension BookListViewController: UICollectionViewDelegate {
 // MARK: UICollectionViewDelegateFlowLayout
 extension BookListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {       
-        let titleSize = NSString(string: viewModel.bookItems[indexPath.row].volumeInfo.title).boundingRect(
+        let titleLabelSize = NSString(string: viewModel.bookItems[indexPath.row].volumeInfo.title).boundingRect(
                     with: CGSize(width: UIScreen.main.bounds.width - 120, height: CGFloat.greatestFiniteMagnitude),
                     options: .usesLineFragmentOrigin,
                     attributes: [
                             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)
                     ],
                     context: nil)
-        let authorSize = NSString(string: viewModel.bookItems[indexPath.row].volumeInfo.authors?.first ?? "").boundingRect(
+        let authorLabelSize = NSString(string: viewModel.bookItems[indexPath.row].volumeInfo.authors?.first ?? "").boundingRect(
                     with: CGSize(width: UIScreen.main.bounds.width - 120, height: CGFloat.greatestFiniteMagnitude),
                     options: .usesLineFragmentOrigin,
                     attributes: [
@@ -237,6 +245,6 @@ extension BookListViewController: UICollectionViewDelegateFlowLayout {
                     ],
                     context: nil)
         
-        return CGSize(width: collectionView.frame.width, height: titleSize.height + authorSize.height + 70)
+        return CGSize(width: collectionView.frame.width, height: titleLabelSize.height + authorLabelSize.height + 70)
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 import BookFinder
 
-class MockURLSession {
+final class MockURLSession {
     var mockResponse: MockResponse?
     
     init(mockResponse: MockResponse) {
