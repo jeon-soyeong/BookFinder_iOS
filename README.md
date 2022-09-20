@@ -5,7 +5,7 @@
 
 ## [Preview]
 ### [검색]
-<img src="https://user-images.githubusercontent.com/61855905/191176804-032022ed-2c41-43fc-a8f1-c6c6458b9b69.gif" width="200" /> <img src="https://user-images.githubusercontent.com/61855905/191176797-9fcb59f6-0e66-4ec4-95a6-c98d62c614e8.gif" width="200" />
+<img src="https://user-images.githubusercontent.com/61855905/191176804-032022ed-2c41-43fc-a8f1-c6c6458b9b69.gif" width="200" /> &nbsp;&nbsp; <img src="https://user-images.githubusercontent.com/61855905/191176797-9fcb59f6-0e66-4ec4-95a6-c98d62c614e8.gif" width="200" />
 <br/> 
 - 검색 기능 구현
 - 검색 결과 없을시 Alert 알림 띄우기
