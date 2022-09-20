@@ -52,8 +52,8 @@ class BookFinderTests: XCTestCase {
         apiService.request(with: request)
             .subscribe(onSuccess: { (bookList: BookList) in
                 XCTAssertNotNil(bookList)
-                XCTAssertEqual(bookList.items?.first?.volumeInfo.title, "언어의 온도(170만부 기념 에디션)")
-                XCTAssertEqual(bookList.items?.first?.volumeInfo.authors?.first, "이기주")
+                XCTAssertEqual(bookList.items?.first?.volumeInfo.title, "사랑의 온도")
+                XCTAssertEqual(bookList.items?.first?.volumeInfo.authors?.first, "고경표")
                 XCTAssertNotEqual(bookList.items?.first?.volumeInfo.authors?.first, "고경표표")
                 
                 expectation.fulfill()

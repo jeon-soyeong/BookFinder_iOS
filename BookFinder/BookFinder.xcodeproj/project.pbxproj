@@ -28,6 +28,12 @@
 		9B55468928ADEE96009F993E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD835E028AB2F4000183B9D /* SceneDelegate.swift */; };
 		9B55468A28ADEE99009F993E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD835DE28AB2F4000183B9D /* AppDelegate.swift */; };
 		9B623C9E28D8C269002D7D4F /* BookDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B623C9D28D8C269002D7D4F /* BookDetailViewModel.swift */; };
+		9B623CA528D9879B002D7D4F /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71AAE728C88858005ED247 /* URLSessionProtocol.swift */; };
+		9B623CA628D9879E002D7D4F /* URLSessionDataTaskProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71AAE928C8888C005ED247 /* URLSessionDataTaskProtocol.swift */; };
+		9B623CA728D987AC002D7D4F /* NotificationName+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C7A4928AED2540058F022 /* NotificationName+Extension.swift */; };
+		9B623CA828D987B5002D7D4F /* URLSession+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71AAE328C88815005ED247 /* URLSession+Extension.swift */; };
+		9B623CA928D987B8002D7D4F /* URLSessionDataTask+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71AAE528C88832005ED247 /* URLSessionDataTask+Extension.swift */; };
+		9B623CAA28D987D8002D7D4F /* BookDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B623C9D28D8C269002D7D4F /* BookDetailViewModel.swift */; };
 		9B6C7A3C28AE44220058F022 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C7A3B28AE44220058F022 /* MockURLSession.swift */; };
 		9B6C7A3E28AE44620058F022 /* MockResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C7A3D28AE44620058F022 /* MockResponse.swift */; };
 		9B6C7A4028AE477F0058F022 /* MockURLSessionDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C7A3F28AE477F0058F022 /* MockURLSessionDataTask.swift */; };
@@ -672,6 +678,9 @@
 				9B55468428ADEE7F009F993E /* BookList.swift in Sources */,
 				9B55467F28ADEE70009F993E /* BookFinderAPI.swift in Sources */,
 				9B55467C28ADEE67009F993E /* UIViewController+Extension.swift in Sources */,
+				9B623CAA28D987D8002D7D4F /* BookDetailViewModel.swift in Sources */,
+				9B623CA628D9879E002D7D4F /* URLSessionDataTaskProtocol.swift in Sources */,
+				9B623CA828D987B5002D7D4F /* URLSession+Extension.swift in Sources */,
 				9B55467A28ADEE63009F993E /* UICollectionView+Extension.swift in Sources */,
 				9B55467B28ADEE65009F993E /* URLRequest+Extension.swift in Sources */,
 				9B55467628ADEE51009F993E /* ViewModelType.swift in Sources */,
@@ -680,16 +689,19 @@
 				9B55467E28ADEE6D009F993E /* APIConstants.swift in Sources */,
 				9B6C7A4E28AED7E90058F022 /* LoadingIndicatorView.swift in Sources */,
 				9B55467828ADEE5D009F993E /* UIFont+Extension.swift in Sources */,
+				9B623CA528D9879B002D7D4F /* URLSessionProtocol.swift in Sources */,
 				9B55468628ADEE8B009F993E /* BookListViewController.swift in Sources */,
 				9B6C7A3C28AE44220058F022 /* MockURLSession.swift in Sources */,
 				9B55467928ADEE60009F993E /* UIView+Extension.swift in Sources */,
 				9B55468028ADEE72009F993E /* APIService.swift in Sources */,
 				9B55468828ADEE92009F993E /* BookDetailViewController.swift in Sources */,
 				9B55468728ADEE8F009F993E /* BookListViewModel.swift in Sources */,
+				9B623CA928D987B8002D7D4F /* URLSessionDataTask+Extension.swift in Sources */,
 				9B55467728ADEE54009F993E /* EndPointType.swift in Sources */,
 				9B55468128ADEE74009F993E /* APIError.swift in Sources */,
 				9B6C7A4028AE477F0058F022 /* MockURLSessionDataTask.swift in Sources */,
 				9B6C7A3E28AE44620058F022 /* MockResponse.swift in Sources */,
+				9B623CA728D987AC002D7D4F /* NotificationName+Extension.swift in Sources */,
 				9B55468528ADEE88009F993E /* BookListCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
