@@ -1,6 +1,6 @@
 # BookFinder
-Google book API를 이용해 사용자가 제목 또는 작가를 검색하여 결과 List를 표시하는 앱.
-<br/><br/>
+### Google book API를 이용해 사용자가 제목 또는 작가를 검색하여 결과 List를 표시하는 앱.
+<br/>
 
 ## [Preview]
 ### [검색]
