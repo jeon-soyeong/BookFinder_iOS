@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		13C975F13D047B2037FA803A /* Pods_BookFinderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46042F005273EBEDF1C5281A /* Pods_BookFinderTests.framework */; };
-		5F915988368D89DED294B074 /* Pods_BookFinder_BookFinderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F83270FEDA254B495352AD9 /* Pods_BookFinder_BookFinderUITests.framework */; };
 		9B55467628ADEE51009F993E /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F972328AB9C280005F870 /* ViewModelType.swift */; };
 		9B55467728ADEE54009F993E /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F972728AB9E590005F870 /* EndPointType.swift */; };
 		9B55467828ADEE5D009F993E /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8361E28AB698C00183B9D /* UIFont+Extension.swift */; };
@@ -60,8 +59,6 @@
 		9BD835E128AB2F4000183B9D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD835E028AB2F4000183B9D /* SceneDelegate.swift */; };
 		9BD835E828AB2F4600183B9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BD835E728AB2F4600183B9D /* Assets.xcassets */; };
 		9BD835F628AB2F4600183B9D /* BookFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD835F528AB2F4600183B9D /* BookFinderTests.swift */; };
-		9BD8360028AB2F4600183B9D /* BookFinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD835FF28AB2F4600183B9D /* BookFinderUITests.swift */; };
-		9BD8360228AB2F4600183B9D /* BookFinderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8360128AB2F4600183B9D /* BookFinderUITestsLaunchTests.swift */; };
 		9BD8361A28AB312F00183B9D /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8361928AB312F00183B9D /* BookListViewController.swift */; };
 		9BD8361C28AB327900183B9D /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8361B28AB327900183B9D /* BookDetailViewController.swift */; };
 		9BD8361F28AB698C00183B9D /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8361E28AB698C00183B9D /* UIFont+Extension.swift */; };
@@ -73,13 +70,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		9BD835F228AB2F4600183B9D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9BD835D328AB2F4000183B9D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9BD835DA28AB2F4000183B9D;
-			remoteInfo = BookFinder;
-		};
-		9BD835FC28AB2F4600183B9D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9BD835D328AB2F4000183B9D /* Project object */;
 			proxyType = 1;
@@ -123,9 +113,6 @@
 		9BD835EC28AB2F4600183B9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BD835F128AB2F4600183B9D /* BookFinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookFinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BD835F528AB2F4600183B9D /* BookFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFinderTests.swift; sourceTree = "<group>"; };
-		9BD835FB28AB2F4600183B9D /* BookFinderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookFinderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9BD835FF28AB2F4600183B9D /* BookFinderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFinderUITests.swift; sourceTree = "<group>"; };
-		9BD8360128AB2F4600183B9D /* BookFinderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFinderUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9BD8361928AB312F00183B9D /* BookListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListViewController.swift; sourceTree = "<group>"; };
 		9BD8361B28AB327900183B9D /* BookDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
 		9BD8361E28AB698C00183B9D /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
@@ -152,14 +139,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				13C975F13D047B2037FA803A /* Pods_BookFinderTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9BD835F828AB2F4600183B9D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5F915988368D89DED294B074 /* Pods_BookFinder_BookFinderUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,7 +212,6 @@
 			children = (
 				9BD835DD28AB2F4000183B9D /* BookFinder */,
 				9BD835F428AB2F4600183B9D /* BookFinderTests */,
-				9BD835FE28AB2F4600183B9D /* BookFinderUITests */,
 				9BD835DC28AB2F4000183B9D /* Products */,
 				2A576392911E5414BBBE41C6 /* Pods */,
 				B2BD2CC41842387B16B0EF4F /* Frameworks */,
@@ -245,7 +223,6 @@
 			children = (
 				9BD835DB28AB2F4000183B9D /* BookFinder.app */,
 				9BD835F128AB2F4600183B9D /* BookFinderTests.xctest */,
-				9BD835FB28AB2F4600183B9D /* BookFinderUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -268,15 +245,6 @@
 				9BD835F528AB2F4600183B9D /* BookFinderTests.swift */,
 			);
 			path = BookFinderTests;
-			sourceTree = "<group>";
-		};
-		9BD835FE28AB2F4600183B9D /* BookFinderUITests */ = {
-			isa = PBXGroup;
-			children = (
-				9BD835FF28AB2F4600183B9D /* BookFinderUITests.swift */,
-				9BD8360128AB2F4600183B9D /* BookFinderUITestsLaunchTests.swift */,
-			);
-			path = BookFinderUITests;
 			sourceTree = "<group>";
 		};
 		9BD8360F28AB301500183B9D /* SupportingFiles */ = {
@@ -444,26 +412,6 @@
 			productReference = 9BD835F128AB2F4600183B9D /* BookFinderTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9BD835FA28AB2F4600183B9D /* BookFinderUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9BD8360B28AB2F4600183B9D /* Build configuration list for PBXNativeTarget "BookFinderUITests" */;
-			buildPhases = (
-				0EEB2B57753B8452F8AE10AA /* [CP] Check Pods Manifest.lock */,
-				9BD835F728AB2F4600183B9D /* Sources */,
-				9BD835F828AB2F4600183B9D /* Frameworks */,
-				9BD835F928AB2F4600183B9D /* Resources */,
-				ED5330F5AA544547D6AD7D5D /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9BD835FD28AB2F4600183B9D /* PBXTargetDependency */,
-			);
-			name = BookFinderUITests;
-			productName = BookFinderUITests;
-			productReference = 9BD835FB28AB2F4600183B9D /* BookFinderUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -478,10 +426,6 @@
 						CreatedOnToolsVersion = 13.0;
 					};
 					9BD835F028AB2F4600183B9D = {
-						CreatedOnToolsVersion = 13.0;
-						TestTargetID = 9BD835DA28AB2F4000183B9D;
-					};
-					9BD835FA28AB2F4600183B9D = {
 						CreatedOnToolsVersion = 13.0;
 						TestTargetID = 9BD835DA28AB2F4000183B9D;
 					};
@@ -502,7 +446,6 @@
 			targets = (
 				9BD835DA28AB2F4000183B9D /* BookFinder */,
 				9BD835F028AB2F4600183B9D /* BookFinderTests */,
-				9BD835FA28AB2F4600183B9D /* BookFinderUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -525,38 +468,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9BD835F928AB2F4600183B9D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0EEB2B57753B8452F8AE10AA /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BookFinder-BookFinderUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		82CD8710B8FBF1908D3F3B11 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -594,23 +508,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BookFinder/Pods-BookFinder-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		ED5330F5AA544547D6AD7D5D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BookFinder-BookFinderUITests/Pods-BookFinder-BookFinderUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BookFinder-BookFinderUITests/Pods-BookFinder-BookFinderUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BookFinder-BookFinderUITests/Pods-BookFinder-BookFinderUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EFA25A65EB4247CBA951BF85 /* [CP] Check Pods Manifest.lock */ = {
@@ -706,15 +603,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9BD835F728AB2F4600183B9D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9BD8360028AB2F4600183B9D /* BookFinderUITests.swift in Sources */,
-				9BD8360228AB2F4600183B9D /* BookFinderUITestsLaunchTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -722,11 +610,6 @@
 			isa = PBXTargetDependency;
 			target = 9BD835DA28AB2F4000183B9D /* BookFinder */;
 			targetProxy = 9BD835F228AB2F4600183B9D /* PBXContainerItemProxy */;
-		};
-		9BD835FD28AB2F4600183B9D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9BD835DA28AB2F4000183B9D /* BookFinder */;
-			targetProxy = 9BD835FC28AB2F4600183B9D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -959,54 +842,6 @@
 			};
 			name = Release;
 		};
-		9BD8360C28AB2F4600183B9D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FDEDB7DF29FCDD1B3BC33377 /* Pods-BookFinder-BookFinderUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 577SG3C42S;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = soyeong.BookFinderUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = BookFinder;
-			};
-			name = Debug;
-		};
-		9BD8360D28AB2F4600183B9D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 01969A3ED2E9E48B93697999 /* Pods-BookFinder-BookFinderUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 577SG3C42S;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = soyeong.BookFinderUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = BookFinder;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1033,15 +868,6 @@
 			buildConfigurations = (
 				9BD8360928AB2F4600183B9D /* Debug */,
 				9BD8360A28AB2F4600183B9D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9BD8360B28AB2F4600183B9D /* Build configuration list for PBXNativeTarget "BookFinderUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9BD8360C28AB2F4600183B9D /* Debug */,
-				9BD8360D28AB2F4600183B9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
