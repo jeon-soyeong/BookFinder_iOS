@@ -230,14 +230,14 @@ extension BookListViewController: UICollectionViewDelegate {
 // MARK: UICollectionViewDelegateFlowLayout
 extension BookListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {       
-        let titleSize = NSString(string: viewModel.bookItems[indexPath.row].volumeInfo.title).boundingRect(
+        let titleLabelSize = NSString(string: viewModel.bookItems[indexPath.row].volumeInfo.title).boundingRect(
                     with: CGSize(width: UIScreen.main.bounds.width - 120, height: CGFloat.greatestFiniteMagnitude),
                     options: .usesLineFragmentOrigin,
                     attributes: [
                             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)
                     ],
                     context: nil)
-        let authorSize = NSString(string: viewModel.bookItems[indexPath.row].volumeInfo.authors?.first ?? "").boundingRect(
+        let authorLabelSize = NSString(string: viewModel.bookItems[indexPath.row].volumeInfo.authors?.first ?? "").boundingRect(
                     with: CGSize(width: UIScreen.main.bounds.width - 120, height: CGFloat.greatestFiniteMagnitude),
                     options: .usesLineFragmentOrigin,
                     attributes: [
@@ -245,6 +245,6 @@ extension BookListViewController: UICollectionViewDelegateFlowLayout {
                     ],
                     context: nil)
         
-        return CGSize(width: collectionView.frame.width, height: titleSize.height + authorSize.height + 70)
+        return CGSize(width: collectionView.frame.width, height: titleLabelSize.height + authorLabelSize.height + 70)
     }
 }
