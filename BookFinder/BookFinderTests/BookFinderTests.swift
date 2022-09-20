@@ -14,7 +14,6 @@ class BookFinderTests: XCTestCase {
     let disposeBag = DisposeBag()
     let bookListViewModel = BookListViewModel()
     var responseData: Data?
-    let imageCacheManager = ImageCacheManager.shared
 
     override func setUpWithError() throws {
         guard let path = Bundle(for: type(of: self)).path(forResource: "BookSearchResult", ofType: "json"),
@@ -78,26 +77,5 @@ class BookFinderTests: XCTestCase {
         XCTAssertTrue(bookListViewModel.currentPage == 3)
         XCTAssertTrue(bookListViewModel.currentItemCount == 40)
         XCTAssertTrue(bookListViewModel.isRequestCompleted == true)
-    }
-    
-    func test_givenImageCacheManager_WhenSaveAndReadCachedImage_ThenSuccess() throws {
-        let testString = "abcdefg"
-        guard let testData = """
-        \(testString)
-        """.data(using: .utf8) else {
-            XCTFail()
-            return
-        }
-        let data = CachedImage(imageData: testData)
-        imageCacheManager.save(data: data, with: "imageDataKey")
-
-        guard let result = imageCacheManager.read(with: "imageDataKey") else {
-            XCTFail()
-            return
-        }
-        XCTAssert(result.imageData.count == 7)
-
-        let resultString = String(data: result.imageData, encoding: .utf8)
-        XCTAssert(resultString == testString)
     }
 }

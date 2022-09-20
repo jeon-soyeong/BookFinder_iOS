@@ -154,11 +154,9 @@ class BookDetailViewController: UIViewController {
     }
 
     func setupUI(data: BookItem) {
-        if let thumbnailImage = data.volumeInfo.imageLinks?.thumbnail {
-            bookCoverImageView.setImage(with: thumbnailImage)
-        } else {
-            bookCoverImageView.image = UIImage(named: "defaultImage")
-        }
+        let thumbnailImage = data.volumeInfo.imageLinks?.thumbnail
+        bookCoverImageView.setImage(with: thumbnailImage, placeholder: UIImage(named: "defaultImage"))
+        
         titleLabel.text = data.volumeInfo.title
         subTitleLabel.text = data.volumeInfo.subtitle
         authorLabel.text = data.volumeInfo.authors?.first
