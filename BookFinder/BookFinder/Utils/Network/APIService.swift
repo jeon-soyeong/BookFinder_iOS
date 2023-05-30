@@ -16,23 +16,17 @@ final class APIService {
         self.session = session
     }
     
-    func request<T: Codable>(with url: URLRequest) -> Single<T> {
-        return Single<T>.create { [weak self] single in
-            let task = self?.session.dataTask(with: url) { (data, response, error) in
-                guard let data = data else {
-                    single(.failure(APIError.failedData))
-                    return
-                }
-                guard let parsedResponse = try? JSONDecoder().decode(T.self, from: data) else {
-                    single(.failure(APIError.failedDecode))
-                    return
-                }
-                single(.success(parsedResponse))
-            }
-            task?.resume()
-            return Disposables.create {
-                task?.cancel()
-            }
+    func request<T: Codable>(with url: URLRequest) async throws -> T {
+        let (data, response) = try await self.session.getData(for: url)
+        
+        guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode == 200 else {
+            throw APIError.failedData
         }
+
+        guard let parsedResponse = try? JSONDecoder().decode(T.self, from: data) else {
+            throw APIError.failedDecode
+        }
+        
+        return parsedResponse
     }
 }

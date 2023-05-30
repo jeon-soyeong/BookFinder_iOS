@@ -64,17 +64,22 @@ final class BookListViewModel: ViewModelType {
         guard let request = URLRequest(type: BookFinderAPI.getBookItem(q: query, startIndex: startIndex, maxResults: perPage)) else {
             return
         }
-        apiService.request(with: request)
-            .subscribe(onSuccess: { [weak self] (bookList: BookList) in
-                if self?.totalItemsCount == 0 {
-                    self?.totalItemsCount = bookList.totalItems
+
+        Task {
+            do {
+                let bookList: BookList = try await apiService.request(with: request)
+                
+                if self.totalItemsCount == 0 {
+                    self.totalItemsCount = bookList.totalItems
                 }
-                self?.process(bookItems: bookList.items)
-                self?.state.isRequesting.accept(false)
-            }, onFailure: {
-                self.state.searchResult.onNext(.failure($0))
-            })
-            .disposed(by: disposeBag)
+                self.process(bookItems: bookList.items)
+                self.state.isRequesting.accept(false)
+            } catch {
+                if let error = error as? APIError {
+                    print(error.description)
+                }
+            }
+        }
     }
 
     func process(bookItems: [BookItem]?) {
